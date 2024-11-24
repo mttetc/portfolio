@@ -5,26 +5,27 @@ import { FiGithub, FiLinkedin, FiMail, FiMapPin, FiSend } from 'react-icons/fi';
 import { SectionTitle } from '@/components/section-title';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ContactForm } from '../contact-form';
+import { EMAIL, NICKNAME } from '@/constants/names';
 
 const socialLinks = [
   {
     name: 'GitHub',
     icon: FiGithub,
-    link: 'https://github.com/yourusername',
+    link: `https://github.com/${NICKNAME}`,
     color: '#6e5494',
     hoverText: 'Check my repos',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
-    link: 'https://linkedin.com/in/yourusername',
+    link: `https://linkedin.com/in/${NICKNAME}`,
     color: '#0077b5',
     hoverText: 'Connect with me',
   },
   {
     name: 'Email',
     icon: FiMail,
-    link: 'mailto:your@email.com',
+    link: EMAIL,
     color: '#ea4335',
     hoverText: 'Send me an email',
   },

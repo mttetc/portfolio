@@ -1,8 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['your-domain.com'],
+    domains: ['https//localhost:3000'],
     unoptimized: true,
   },
 };

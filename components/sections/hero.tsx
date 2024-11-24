@@ -10,7 +10,6 @@ import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import BoxReveal from '../ui/box-reveal';
 import Particles from '../ui/particles';
-import { useToast } from '@/hooks/use-toast';
 
 const IconCloud = dynamic(() => import('@/components/ui/icon-cloud'), {
   ssr: false,

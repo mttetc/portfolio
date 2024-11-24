@@ -16,7 +16,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: 'Portfolio',
-  description: 'Modern Portfolio with ThreeJS',
+  description: 'Just my projects',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

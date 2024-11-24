@@ -4,13 +4,11 @@
 
 @layer base {
   :root {
-    /* Theme Colors */
     --background-lighter: 267 45% 26%;
     --background: 267 45% 16%;
     --background-darker: 267 45% 6%;
     --foreground: 0 0% 98%;
 
-    /* shadcn colors */
     --background: 267 45% 16%;
     --foreground: 0 0% 98%;
 
@@ -58,7 +56,6 @@
     --background-darker: 267 45% 80%;
     --foreground: 267 45% 9%;
 
-    /* shadcn light mode colors */
     --background: 267 45% 90%;
     --foreground: 267 45% 9%;
 
@@ -87,12 +84,10 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 263.4 70% 50.4%;
 
-    /* UI Elements for light mode */
     --glass-bg: hsla(267, 45%, 20%, 0.05);
     --glass-border: hsla(267, 45%, 20%, 0.2);
     --glass-blur: 12px;
 
-    /* Text Colors for light mode */
     --text-primary: 267 45% 9%;
     --text-secondary: 267 35% 25%;
     --text-muted: 267 25% 60%;
@@ -170,7 +165,6 @@
   initial-value: 100%;
 }
 
-/* Theme-based styles */
 html {
   background: hsl(var(--background));
 }
@@ -263,7 +257,6 @@ body {
   }
 }
 
-/* Non-theme RGB border with vibrant colors */
 @property --angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -313,8 +306,6 @@ body {
     --angle: 360deg;
   }
 }
-
-/* Glass styles */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
@@ -343,7 +334,6 @@ body {
   }
 }
 
-/* Update TextGradient styles */
 .text-gradient {
   background: linear-gradient(to right, var(--gradient-1), var(--gradient-2), var(--gradient-3));
   background-size: 200% auto;
@@ -353,13 +343,9 @@ body {
   animation: gradient 8s ease infinite;
 }
 
-/* Keep existing RGB border and other animations... */
-
 .rounded-full {
   border-radius: 9999px;
 }
-
-/* Hide default cursor */
 * {
   cursor: none !important;
 }

@@ -83,7 +83,7 @@ export default function Projects() {
         technologies.find(t => t.name === 'Next.js')!,
       ],
       image: '/projects/portfolio.jpg',
-      github: 'https://github.com/yourusername/portfolio',
+      github: 'https://github.com/mttetc/portfolio',
       link: 'https://portfolio.com',
     },
     {
@@ -94,7 +94,7 @@ export default function Projects() {
         technologies.find(t => t.name === 'TypeScript')!,
       ],
       image: '/projects/api.jpg',
-      github: 'https://github.com/yourusername/api',
+      github: 'https://github.com/mttetc/api',
       link: 'https://api.com',
     },
     {
@@ -102,7 +102,7 @@ export default function Projects() {
       description: 'Python-based data analysis tool',
       technologies: [technologies.find(t => t.name === 'Python')!],
       image: '/projects/data-tool.jpg',
-      github: 'https://github.com/yourusername/data-tool',
+      github: 'https://github.com/mttetc/data-tool',
       link: 'https://data-tool.com',
     },
   ];
