@@ -2,20 +2,446 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Theme Colors */
+    --background-lighter: 267 45% 26%;
+    --background: 267 45% 16%;
+    --background-darker: 267 45% 6%;
+    --foreground: 0 0% 98%;
+
+    /* shadcn colors */
+    --background: 267 45% 16%;
+    --foreground: 0 0% 98%;
+
+    --card: 267 45% 16%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 267 45% 16%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 267 100% 61%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 221 83% 53%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 267 45% 26%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 322 100% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 25% 27%;
+    --input: 215 25% 27%;
+    --ring: 263.4 70% 50.4%;
+
+    /* UI Elements */
+    --glass-bg: hsla(0, 0%, 100%, 0.07);
+    --glass-border: hsla(0, 0%, 100%, 0.05);
+    --glass-blur: 12px;
+
+    /* Text Colors */
+    --text-primary: 0 0% 98%;
+    --text-secondary: 240 5% 65%;
+    --text-muted: 240 5% 40%;
+
+    --transition-normal: 0.1s ease-in-out;
+  }
+
+  :root[data-theme='light'] {
+    --background-lighter: 267 45% 96%;
+    --background: 267 45% 90%;
+    --background-darker: 267 45% 80%;
+    --foreground: 267 45% 9%;
+
+    /* shadcn light mode colors */
+    --background: 267 45% 90%;
+    --foreground: 267 45% 9%;
+
+    --card: 267 45% 90%;
+    --card-foreground: 267 45% 9%;
+
+    --popover: 267 45% 90%;
+    --popover-foreground: 267 45% 9%;
+
+    --primary: 267 100% 61%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 221 83% 53%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 267 45% 96%;
+    --muted-foreground: 267 35% 25%;
+
+    --accent: 322 100% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 263.4 70% 50.4%;
+
+    /* UI Elements for light mode */
+    --glass-bg: hsla(267, 45%, 20%, 0.05);
+    --glass-border: hsla(267, 45%, 20%, 0.2);
+    --glass-blur: 12px;
+
+    /* Text Colors for light mode */
+    --text-primary: 267 45% 9%;
+    --text-secondary: 267 35% 25%;
+    --text-muted: 267 25% 60%;
+  }
+
+  @layer base {
+    * {
+      border-color: var(--glass-border);
+      cursor: none;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-outfit);
+    font-weight: 500;
+  }
+
+  html {
+    cursor: none;
+  }
+
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role='button'] {
+    cursor: none;
+  }
+
+  @media (pointer: coarse) {
+    * {
+      cursor: auto !important;
+    }
   }
 }
 
+@property --x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+@property --x2 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+@property --y2 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+@property --x3 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+@property --y3 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+
+/* Theme-based styles */
+html {
+  background: hsl(var(--background));
+}
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: hsl(var(--text-primary));
+  min-height: 100vh;
+  background: linear-gradient(
+      135deg,
+      hsl(var(--background-lighter)),
+      hsl(var(--background)),
+      hsl(var(--background-darker))
+    ),
+    radial-gradient(circle at var(--x, 0%) var(--y, 0%), hsl(var(--primary) / 0.3), transparent 40%),
+    radial-gradient(
+      circle at var(--x2, 100%) var(--y2, 0%),
+      hsl(var(--secondary) / 0.3),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at var(--x3, 0%) var(--y3, 100%),
+      hsl(var(--accent) / 0.3),
+      transparent 40%
+    );
+  animation:
+    move-x 15s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    move-y 15s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    move-x2 20s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    move-y2 20s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    move-x3 25s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    move-y3 25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes move-x {
+  0%,
+  100% {
+    --x: 0%;
+  }
+  50% {
+    --x: 100%;
+  }
+}
+
+@keyframes move-y {
+  0%,
+  100% {
+    --y: 0%;
+  }
+  50% {
+    --y: 100%;
+  }
+}
+
+@keyframes move-x2 {
+  0%,
+  100% {
+    --x2: 100%;
+  }
+  50% {
+    --x2: 0%;
+  }
+}
+
+@keyframes move-y2 {
+  0%,
+  100% {
+    --y2: 100%;
+  }
+  50% {
+    --y2: 0%;
+  }
+}
+
+@keyframes move-x3 {
+  0%,
+  100% {
+    --x3: 0%;
+  }
+  50% {
+    --x3: 100%;
+  }
+}
+
+@keyframes move-y3 {
+  0%,
+  100% {
+    --y3: 0%;
+  }
+  50% {
+    --y3: 100%;
+  }
+}
+
+/* Non-theme RGB border with vibrant colors */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rgb-border {
+  position: relative;
+  border-radius: 9999px;
+  padding: 0.25rem;
+}
+
+.rgb-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--angle),
+    #ff0080,
+    #7928ca,
+    #00ff00,
+    #00bfff,
+    #ff0080,
+    #ffd700,
+    #ff4500,
+    #7928ca,
+    #00ff00,
+    #00bfff,
+    #ff0080
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate-hue 3s linear infinite;
+}
+
+.rgb-border:hover::before {
+  animation: rotate-hue 2s linear infinite;
+}
+
+@keyframes rotate-hue {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Glass styles */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+
+  &.interactive {
+    transition: all var(--transition-normal);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &.animated {
+    transition: all var(--transition-normal);
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* Update TextGradient styles */
+.text-gradient {
+  background: linear-gradient(to right, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 8s ease infinite;
+}
+
+/* Keep existing RGB border and other animations... */
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+@layer utilities {
+  /* Toast animations */
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes exit {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in {
+    animation: enter 150ms ease-out;
+  }
+
+  .animate-out {
+    animation: exit 150ms ease-in;
+  }
+
+  .slide-in-from-top-full {
+    animation: slide-in-from-top 150ms ease-out;
+  }
+
+  .slide-in-from-bottom-full {
+    animation: slide-in-from-bottom 150ms ease-out;
+  }
+
+  .slide-out-to-right-full {
+    animation: slide-in-from-right 150ms ease-in reverse;
+  }
+
+  .fade-out-80 {
+    animation: fade-out 150ms ease-in;
+  }
 }
