@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { StaticImageData } from 'next/image';
 
 export const TechStackEnum = z.enum([
   'React',
@@ -34,7 +35,7 @@ export const TechStackEnum = z.enum([
 ]);
 
 export const ProjectSchema = z.object({
-  image: z.string(),
+  image: z.custom<StaticImageData>(),
   name: z.string(),
   description: z.string().optional(),
   github: z.string().url().optional(),

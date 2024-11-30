@@ -1,37 +1,41 @@
 'use client';
 
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FiArrowUp } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 
 export default function ScrollToTop() {
-  const [show, setShow] = useState(false);
-  const { scrollYProgress } = useScroll();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    return scrollYProgress.on('change', latest => {
-      setShow(latest > 0.1);
-    });
-  }, [scrollYProgress]);
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
     <motion.button
       onClick={scrollToTop}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
       className="fixed bottom-6 right-6 z-50 p-3 glass rounded-full"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: show ? 1 : 0,
-        scale: show ? 1 : 0,
-      }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      transition={{ duration: 0.2 }}
+      aria-label="Scroll to top of page"
+      title="Scroll to top"
     >
-      <FiArrowUp className="w-6 h-6" />
+      <FiArrowUp className="w-6 h-6" aria-hidden="true" />
+      <span className="sr-only">Scroll to top of page</span>
     </motion.button>
   );
 }

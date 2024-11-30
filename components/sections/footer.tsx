@@ -16,8 +16,10 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
+                aria-label="Visit Next.js website"
               >
                 Next.js
+                <span className="sr-only">(opens in new tab)</span>
               </a>{' '}
               and{' '}
               <a
@@ -25,8 +27,10 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
+                aria-label="Visit Tailwind CSS website"
               >
                 Tailwind CSS
+                <span className="sr-only">(opens in new tab)</span>
               </a>
             </p>
             <div className="mt-2">

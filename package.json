@@ -15,6 +15,7 @@
     "@react-aria/button": "^3.11.0",
     "@react-aria/focus": "^3.19.0",
     "@react-aria/interactions": "^3.22.5",
+    "@react-aria/link": "^3.7.7",
     "@tanstack/react-virtual": "^3.10.9",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",

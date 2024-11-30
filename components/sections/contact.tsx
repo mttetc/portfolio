@@ -1,5 +1,7 @@
 'use client';
 
+import { useLink } from '@react-aria/link';
+import { useRef } from 'react';
 import { SectionTitle } from '@/components/section-title';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { EMAIL, NICKNAME } from '@/constants/names';
@@ -40,7 +42,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
           <div className="space-y-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="prose prose-invert"
             >
@@ -63,35 +65,45 @@ export default function Contact() {
             </motion.div>
 
             <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <motion.div
-                  key={social.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.2,
-                    delay: 0.1 * index,
-                  }}
-                >
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <a
-                        href={social.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block p-4 glass interactive rounded-xl"
-                        style={{ color: social.color }}
-                      >
-                        <social.icon size={24} />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{social.hoverText}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </motion.div>
-              ))}
+              {socialLinks.map((social, index) => {
+                const ref = useRef(null);
+                const { linkProps } = useLink(
+                  {
+                    href: social.link,
+                    target: '_blank',
+                    'aria-label': `Visit my ${social.name} profile`,
+                  },
+                  ref
+                );
+
+                return (
+                  <motion.div
+                    key={social.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.2, delay: 0.1 * index }}
+                  >
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <a
+                          {...linkProps}
+                          ref={ref}
+                          rel="noopener noreferrer"
+                          className="block p-4 glass interactive rounded-xl"
+                          style={{ color: social.color }}
+                        >
+                          <social.icon size={24} aria-hidden="true" />
+                          <span className="sr-only">Visit my {social.name} profile</span>
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{social.hoverText}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
           <ContactForm />
