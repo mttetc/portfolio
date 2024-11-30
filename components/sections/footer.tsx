@@ -6,7 +6,7 @@ import SparklesText from '../ui/sparkles-text';
 export default function Footer() {
   return (
     <footer className="py-10 mt-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center gap-8">
           <div className="text-center text-sm text-gray-400">
             <p>

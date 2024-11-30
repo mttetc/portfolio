@@ -1,12 +1,13 @@
-import { GeistSans } from 'geist/font/sans';
-import { Outfit } from 'next/font/google';
-import type { Metadata } from 'next';
 import { CustomCursor } from '@/components/custom-cursor';
 import { ScrollProgress } from '@/components/scroll-progress';
-import { ThemeSwitcher } from '@/components/theme-switcher';
 import ScrollToTop from '@/components/scroll-to-top';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Toaster } from '@/components/ui/toaster';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { GeistSans } from 'geist/font/sans';
+import type { Metadata } from 'next';
+import { Outfit } from 'next/font/google';
+import { isMobile, isTablet } from 'react-device-detect';
 import './globals.css';
 
 const outfit = Outfit({
@@ -20,10 +21,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const hasCustomCursor = !isMobile && !isTablet;
+
   return (
     <html lang="en" className={`${GeistSans.variable} ${outfit.variable}`}>
       <body>
-        <CustomCursor />
+        {hasCustomCursor && <CustomCursor />}
         <ScrollProgress />
         <ScrollToTop />
         <ThemeSwitcher />

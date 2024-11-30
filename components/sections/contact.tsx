@@ -1,11 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail, FiMapPin, FiSend } from 'react-icons/fi';
 import { SectionTitle } from '@/components/section-title';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { ContactForm } from '../contact-form';
 import { EMAIL, NICKNAME } from '@/constants/names';
+import { motion } from 'framer-motion';
+import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
+import { ContactForm } from '../contact-form';
 
 const socialLinks = [
   {
@@ -34,7 +34,7 @@ const socialLinks = [
 export default function Contact() {
   return (
     <section className="min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto">
         <SectionTitle title="Get in Touch" icon="contact" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">

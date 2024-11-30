@@ -308,7 +308,6 @@ body {
 }
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: 1rem;
 
