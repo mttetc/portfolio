@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     image: getProjectImage('cryptoguessr'),
     name: 'Cryptoguessr',
     github: 'https://github.com/mttetc/cryptoguessr',
-    url: 'https://mttetc.dev',
+    url: 'https://main.d2xcbwz138rr7q.amplifyapp.com/',
     description: 'Crypto price guessing game with real-time data',
     stack: [
       'React',
@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     image: getProjectImage('polygons'),
     name: 'Polygons',
     github: 'https://github.com/mttetc/polygons',
-    url: 'https://mttetc.dev',
+    url: 'https://polygons-eta.vercel.app/',
     description: 'Drawing app with save, load and optimized compression',
     stack: [
       'React',

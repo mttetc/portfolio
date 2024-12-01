@@ -1,5 +1,4 @@
 import { TECHNOLOGIES } from '@/constants/technologies';
-import { memo } from 'react';
 
 interface TechBadgeProps {
   tech: (typeof TECHNOLOGIES)[0];

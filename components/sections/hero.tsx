@@ -8,7 +8,7 @@ import { getCssVar } from '@/lib/utils';
 import { useButton } from '@react-aria/button';
 import { motion, useInView } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import BoxReveal from '../ui/box-reveal';
 import Particles from '../ui/particles';
 
@@ -60,6 +60,24 @@ const iconCloudVariants = {
     y: 0,
   },
 };
+
+const IconCloudSection = memo(function IconCloudSection({ isInView }: { isInView: boolean }) {
+  return (
+    <div
+      className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] mx-auto"
+      aria-hidden
+    >
+      <motion.div
+        variants={iconCloudVariants}
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.3 }}
+      >
+        {isInView && <IconCloud iconSlugs={STACK_SLUGS} />}
+      </motion.div>
+    </div>
+  );
+});
 
 export default function Hero() {
   const ref = useRef(null);
@@ -131,19 +149,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <div
-            className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] mx-auto"
-            aria-hidden
-          >
-            <motion.div
-              variants={iconCloudVariants}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.3 }}
-            >
-              {isInView && <IconCloud iconSlugs={STACK_SLUGS} />}
-            </motion.div>
-          </div>
+          <IconCloudSection isInView={isInView} />
         </div>
       </div>
     </section>

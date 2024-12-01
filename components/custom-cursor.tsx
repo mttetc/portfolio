@@ -1,82 +1,114 @@
 'use client';
 
-import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+
+const lerp = (start: number, end: number, amt: number) => (1 - amt) * start + amt * end;
 
 export function CustomCursor() {
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
+  const cursor = useRef<HTMLDivElement>(null);
+  const cursorVisible = useRef(false);
+  const cursorEnlarged = useRef(false);
+  const currentScale = useRef(1);
+  const targetScale = useRef(1);
+  const mouseX = useRef(0);
+  const mouseY = useRef(0);
 
-  const springConfig = { damping: 50, stiffness: 1000, mass: 0.1 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const animateScale = useCallback(() => {
+    if (!cursor.current) return;
+
+    currentScale.current = lerp(currentScale.current, targetScale.current, 0.15);
+    cursor.current.style.transform = `translate3d(${mouseX.current}px, ${mouseY.current}px, 0) translate(-50%, -50%) scale(${currentScale.current})`;
+
+    if (Math.abs(currentScale.current - targetScale.current) > 0.001) {
+      requestAnimationFrame(animateScale);
+    }
+  }, []);
+
+  const positionCursor = useCallback((e: MouseEvent) => {
+    if (!cursor.current) return;
+    cursorVisible.current = true;
+    mouseX.current = e.clientX;
+    mouseY.current = e.clientY;
+    cursor.current.style.transform = `translate3d(${mouseX.current}px, ${mouseY.current}px, 0) translate(-50%, -50%) scale(${currentScale.current})`;
+  }, []);
+
+  const toggleCursorVisibility = useCallback(() => {
+    if (!cursor.current) return;
+    cursor.current.style.opacity = cursorVisible.current ? '1' : '0';
+  }, []);
+
+  const isInteractive = useCallback((target: HTMLElement) => {
+    return !!target.closest('a, button, [role="button"], input, textarea, select');
+  }, []);
+
+  const handleMouseOver = useCallback(
+    (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (isInteractive(target)) {
+        cursorEnlarged.current = true;
+        targetScale.current = 2;
+        requestAnimationFrame(animateScale);
+      }
+    },
+    [animateScale, isInteractive]
+  );
+
+  const handleMouseOut = useCallback(
+    (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (isInteractive(target)) {
+        cursorEnlarged.current = false;
+        targetScale.current = 1;
+        requestAnimationFrame(animateScale);
+      }
+    },
+    [animateScale, isInteractive]
+  );
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+    const onMouseMove = (e: MouseEvent) => {
+      positionCursor(e);
+      toggleCursorVisibility();
     };
 
-    const isInteractive = (element: HTMLElement | null): boolean => {
-      if (!element) return false;
-
-      const interactiveTags = ['BUTTON', 'A', 'INPUT', 'TEXTAREA'];
-      const isInteractiveTag =
-        interactiveTags.includes(element.tagName) || element.closest(interactiveTags.join(','));
-      const hasInteractiveRole = element.getAttribute('role') === 'button';
-
-      return !!isInteractiveTag || hasInteractiveRole;
+    const onMouseDown = () => {
+      targetScale.current = 0.8;
+      requestAnimationFrame(animateScale);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMouseUp = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!isClicking) {
-        setIsHovering(isInteractive(target));
-      }
+      targetScale.current = isInteractive(target) ? 2 : 1;
+      requestAnimationFrame(animateScale);
     };
 
-    const handleMouseDown = () => {
-      setIsClicking(true);
-      setIsHovering(false);
-    };
-
-    const handleMouseUp = () => {
-      setIsClicking(false);
-      const target = document.elementFromPoint(cursorX.get(), cursorY.get()) as HTMLElement;
-      if (target) {
-        setIsHovering(isInteractive(target));
-      }
-    };
-
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mouseup', onMouseUp);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('mouseup', onMouseUp);
     };
-  }, [cursorX, cursorY, isClicking]);
+  }, [
+    handleMouseOver,
+    handleMouseOut,
+    positionCursor,
+    toggleCursorVisibility,
+    animateScale,
+    isInteractive,
+  ]);
 
   return (
-    <motion.div
-      className="fixed w-8 h-8 pointer-events-none z-[9999] mix-blend-difference"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-      }}
-      animate={{
-        scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
-        opacity: isHovering ? 0.8 : 1,
-      }}
-      transition={{ duration: 0.15 }}
-    >
-      <div className="w-full h-full rounded-full bg-white" />
-    </motion.div>
+    <div
+      ref={cursor}
+      className="fixed pointer-events-none z-[9999] mix-blend-difference w-5 h-5 rounded-full bg-white opacity-0 transition-opacity duration-300"
+      style={{ transform: 'translate(-50%, -50%)' }}
+    />
   );
 }

@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { contactAction } from '@/lib/actions/contact';
 import { motion } from 'framer-motion';
 import { useActionState, useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { FiSend } from 'react-icons/fi';
 
 function SubmitButton() {

@@ -2,7 +2,7 @@ import { TECHNOLOGIES } from '@/constants/technologies';
 import { AllButton } from './all-button';
 import { TechButton } from './tech-button';
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
-import { useCallback } from 'react';
+import { useCallback, memo } from 'react';
 import { FiFilter } from 'react-icons/fi';
 import {
   Drawer,
@@ -14,6 +14,68 @@ import {
 import { isMobile, isTablet } from 'react-device-detect';
 import { motion } from 'framer-motion';
 
+const AnimatedAllButton = memo(function AnimatedAllButton({
+  isActive,
+  onClick,
+}: {
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <AllButton isActive={isActive} onClick={onClick} />
+    </motion.div>
+  );
+});
+
+const AnimatedTechButton = memo(function AnimatedTechButton({
+  tech,
+  isActive,
+  onToggle,
+}: {
+  tech: (typeof TECHNOLOGIES)[0];
+  isActive: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <TechButton tech={tech} isActive={isActive} onToggle={onToggle} />
+    </motion.div>
+  );
+});
+
+const FilterButtons = memo(function FilterButtons({
+  activeFilters,
+  onAllClick,
+  onTechClick,
+}: {
+  activeFilters: string[];
+  onAllClick: () => void;
+  onTechClick: (name: string) => () => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-4">
+      <AnimatedAllButton isActive={activeFilters.includes('All')} onClick={onAllClick} />
+      {TECHNOLOGIES.map(tech => (
+        <AnimatedTechButton
+          key={tech.name}
+          tech={tech}
+          isActive={activeFilters.includes(tech.name)}
+          onToggle={onTechClick(tech.name)}
+        />
+      ))}
+    </div>
+  );
+});
+
 export const TechFilters = () => {
   const isDrawerVisible = isMobile || isTablet;
   const activeFilters = useProjectsStore(state => state.activeFilters);
@@ -21,44 +83,6 @@ export const TechFilters = () => {
 
   const handleAllClick = useCallback(() => toggleFilter('All'), [toggleFilter]);
   const handleTechClick = useCallback((name: string) => () => toggleFilter(name), [toggleFilter]);
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
-
-  const FilterButtons = () => (
-    <motion.div
-      className="flex flex-wrap gap-4"
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-    >
-      <motion.div variants={item}>
-        <AllButton isActive={activeFilters.includes('All')} onClick={handleAllClick} />
-      </motion.div>
-      {TECHNOLOGIES.map(tech => (
-        <motion.div key={tech.name} variants={item}>
-          <TechButton
-            tech={tech}
-            isActive={activeFilters.includes(tech.name)}
-            onToggle={handleTechClick(tech.name)}
-          />
-        </motion.div>
-      ))}
-    </motion.div>
-  );
 
   return (
     <div className="mb-12">
@@ -81,13 +105,21 @@ export const TechFilters = () => {
                 <DrawerTitle>Filter Projects</DrawerTitle>
               </DrawerHeader>
               <div className="p-4 overflow-y-auto max-h-[60vh]">
-                <FilterButtons />
+                <FilterButtons
+                  activeFilters={activeFilters}
+                  onAllClick={handleAllClick}
+                  onTechClick={handleTechClick}
+                />
               </div>
             </div>
           </DrawerContent>
         </Drawer>
       ) : (
-        <FilterButtons />
+        <FilterButtons
+          activeFilters={activeFilters}
+          onAllClick={handleAllClick}
+          onTechClick={handleTechClick}
+        />
       )}
     </div>
   );

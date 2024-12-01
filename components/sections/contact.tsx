@@ -27,13 +27,46 @@ const socialLinks = [
   {
     name: 'Email',
     icon: FiMail,
-    link: EMAIL,
+    link: `mailto:${EMAIL}`,
     color: '#ea4335',
     hoverText: 'Send me an email',
   },
 ];
 
 export default function Contact() {
+  const githubRef = useRef<HTMLAnchorElement>(null);
+  const linkedinRef = useRef<HTMLAnchorElement>(null);
+  const emailRef = useRef<HTMLAnchorElement>(null);
+
+  const { linkProps: githubProps } = useLink(
+    {
+      href: socialLinks[0].link,
+      target: '_blank',
+      'aria-label': `Visit my ${socialLinks[0].name} profile`,
+    },
+    githubRef
+  );
+
+  const { linkProps: linkedinProps } = useLink(
+    {
+      href: socialLinks[1].link,
+      target: '_blank',
+      'aria-label': `Visit my ${socialLinks[1].name} profile`,
+    },
+    linkedinRef
+  );
+
+  const { linkProps: emailProps } = useLink(
+    {
+      href: socialLinks[2].link,
+      'aria-label': 'Send me an email',
+    },
+    emailRef
+  );
+
+  const linkProps = [githubProps, linkedinProps, emailProps];
+  const refs = [githubRef, linkedinRef, emailRef];
+
   return (
     <section id="contact" className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto">
@@ -65,45 +98,33 @@ export default function Contact() {
             </motion.div>
 
             <div className="flex gap-4">
-              {socialLinks.map((social, index) => {
-                const ref = useRef(null);
-                const { linkProps } = useLink(
-                  {
-                    href: social.link,
-                    target: '_blank',
-                    'aria-label': `Visit my ${social.name} profile`,
-                  },
-                  ref
-                );
-
-                return (
-                  <motion.div
-                    key={social.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.2, delay: 0.1 * index }}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <a
-                          {...linkProps}
-                          ref={ref}
-                          rel="noopener noreferrer"
-                          className="block p-4 glass interactive rounded-xl"
-                          style={{ color: social.color }}
-                        >
-                          <social.icon size={24} aria-hidden="true" />
-                          <span className="sr-only">Visit my {social.name} profile</span>
-                        </a>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{social.hoverText}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </motion.div>
-                );
-              })}
+              {socialLinks.map((social, index) => (
+                <motion.div
+                  key={social.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.2, delay: 0.1 * index }}
+                >
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        {...linkProps[index]}
+                        ref={refs[index]}
+                        rel="noopener noreferrer"
+                        className="block p-4 glass interactive rounded-xl"
+                        style={{ color: social.color }}
+                      >
+                        <social.icon size={24} aria-hidden="true" />
+                        <span className="sr-only">Visit my {social.name} profile</span>
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{social.hoverText}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </motion.div>
+              ))}
             </div>
           </div>
           <ContactForm />

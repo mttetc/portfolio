@@ -1,5 +1,4 @@
 import { PROJECTS } from '@/constants/projects';
-import { TECHNOLOGIES } from '@/constants/technologies';
 import { create } from 'zustand';
 
 interface ProjectsState {
