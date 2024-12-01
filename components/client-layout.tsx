@@ -6,24 +6,10 @@ import ScrollToTop from '@/components/scroll-to-top';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { isMobile, isTablet } from 'react-device-detect';
-import { useEffect, useState } from 'react';
+import { useDeviceCursor } from '@/hooks/use-device-cursor';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  const [hasCustomCursor, setHasCustomCursor] = useState(false);
-
-  useEffect(() => {
-    const isMobileDevice = isMobile || isTablet;
-    const isSmallScreen = window.innerWidth <= 1024;
-    setHasCustomCursor(!isMobileDevice && !isSmallScreen);
-
-    const handleResize = () => {
-      setHasCustomCursor(!isMobileDevice && window.innerWidth > 1024);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const hasCustomCursor = useDeviceCursor();
 
   return (
     <>
