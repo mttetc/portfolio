@@ -97,8 +97,7 @@ export const PROJECTS: Project[] = [
   {
     image: getProjectImage('videobookmark'),
     name: 'Video bookmark',
-    github: 'https://github.com/mttetc/cryptoguessr',
-    url: 'https://mttetc.dev',
+    github: 'https://github.com/mttetc/bookmark',
     description: 'Small app for video (youtube, vimeo) bookmarking',
     stack: ['React', 'TypeScript', 'Styled Components', 'Jest'],
   },
