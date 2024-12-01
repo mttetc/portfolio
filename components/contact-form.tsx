@@ -49,12 +49,14 @@ export function ContactForm() {
       toast({
         title: 'Message Sent Successfully',
         description: "Thanks for reaching out! I'll get back to you soon.",
+        duration: 4000,
       });
     } else if (state?.error) {
       toast({
         title: 'Error',
         description: state.error,
         variant: 'destructive',
+        duration: 4000,
       });
     }
   }, [state, toast]);
