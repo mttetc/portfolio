@@ -1,3 +1,5 @@
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -20,8 +22,6 @@ const nextConfig = {
   },
 };
 
-// Only use bundle analyzer when analyzing
-const config =
-  process.env.ANALYZE === 'true' ? require('@next/bundle-analyzer')()(nextConfig) : nextConfig;
+const config = process.env.ANALYZE === 'true' ? withBundleAnalyzer()(nextConfig) : nextConfig;
 
-module.exports = config;
+export default config;
