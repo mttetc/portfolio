@@ -1,13 +1,8 @@
-import withBundleAnalyzer from '@next/bundle-analyzer';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
-  },
-  experimental: {
-    optimizeCss: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -22,6 +17,4 @@ const nextConfig = {
   },
 };
 
-const config = process.env.ANALYZE === 'true' ? withBundleAnalyzer()(nextConfig) : nextConfig;
-
-export default config;
+module.exports = nextConfig;
