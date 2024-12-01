@@ -33,6 +33,34 @@ const texts = [
   'Team Player',
 ];
 
+const contentVariants = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+  },
+};
+
+const iconCloudVariants = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+    '@media (max-width: 1024px)': {
+      x: 0,
+      y: -20,
+    },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+  },
+};
+
 export default function Hero() {
   const ref = useRef(null);
   const buttonRef = useRef(null);
@@ -49,49 +77,50 @@ export default function Hero() {
 
   return (
     <section
+      id="home"
       ref={ref}
       aria-labelledby="hero-title"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20 md:py-0"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20 lg:py-0"
     >
-      <motion.div
-        role="presentation"
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isInView ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0"
-      >
-        <Particles color={getCssVar('--primary')} />
-      </motion.div>
+      <div className="absolute inset-0" aria-hidden>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isInView ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Particles color={getCssVar('--primary')} />
+        </motion.div>
+      </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            role="contentinfo"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -20 }}
-            transition={{ duration: 0.5 }}
-            className="text-center lg:text-left"
+            variants={contentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            className="text-center lg:text-left flex flex-col gap-4"
           >
             <BoxReveal width="100%">
-              <h2 className="text-lg md:text-xl mb-2">Hello, I&apos;m</h2>
+              <h2 className="text-lg md:text-xl">Hello, I&apos;m</h2>
             </BoxReveal>
 
             <BoxReveal width="100%">
               <TextGradient>
-                <h1 id="hero-title" className="text-5xl md:text-7xl font-bold mb-4">
+                <h1 id="hero-title" className="text-5xl md:text-7xl font-bold">
                   {FIRST_NAME}
                 </h1>
               </TextGradient>
             </BoxReveal>
 
             <BoxReveal width="100%">
-              <p className="text-xl md:text-2xl text-[hsl(var(--text-primary))] h-8 mb-8">
+              <p className="text-xl md:text-2xl text-[hsl(var(--text-primary))] h-8">
                 I&apos;m a <TypingAnimation texts={texts} />
               </p>
             </BoxReveal>
 
-            <div className="rgb-border inline-block">
+            <div className="rgb-border inline-block mt-4 self-center lg:self-start">
               <button
                 {...buttonProps}
                 ref={buttonRef}
@@ -102,16 +131,19 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <motion.div
-            role="presentation"
-            aria-hidden="true"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 20 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] mx-auto"
+            aria-hidden
           >
-            {isInView && <IconCloud iconSlugs={STACK_SLUGS} />}
-          </motion.div>
+            <motion.div
+              variants={iconCloudVariants}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.3 }}
+            >
+              {isInView && <IconCloud iconSlugs={STACK_SLUGS} />}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

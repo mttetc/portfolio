@@ -17,11 +17,12 @@ const icons: Record<string, IconType> = {
 
 export function SectionTitle({ title, icon }: SectionTitleProps) {
   const Icon = icons[icon];
-  
+
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}  
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       className="flex items-center gap-4 mb-8"
     >
       <div className="p-3 glass rounded-xl">
@@ -30,4 +31,4 @@ export function SectionTitle({ title, icon }: SectionTitleProps) {
       <h2 className="text-4xl font-bold">{title}</h2>
     </motion.div>
   );
-} 
+}

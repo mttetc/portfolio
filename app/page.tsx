@@ -8,21 +8,11 @@ import Footer from '@/components/sections/footer';
 
 export default function Home() {
   return (
-    <main className="relative">
-      <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <section id="home">
-            <Hero />
-          </section>
-          <section id="projects">
-            <Projects />
-          </section>
-          <section id="contact">
-            <Contact />
-          </section>
-        </div>
-        <Footer />
-      </div>
+    <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Hero />
+      <Projects />
+      <Contact />
+      <Footer />
     </main>
   );
 }

@@ -35,7 +35,7 @@ const socialLinks = [
 
 export default function Contact() {
   return (
-    <section className="min-h-screen py-20">
+    <section id="contact" className="min-h-screen py-20">
       <div className="max-w-7xl mx-auto">
         <SectionTitle title="Get in Touch" icon="contact" />
 

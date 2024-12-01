@@ -12,6 +12,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { isMobile, isTablet } from 'react-device-detect';
+import { motion } from 'framer-motion';
 
 export const TechFilters = () => {
   const isDrawerVisible = isMobile || isTablet;
@@ -21,15 +22,58 @@ export const TechFilters = () => {
   const handleAllClick = useCallback(() => toggleFilter('All'), [toggleFilter]);
   const handleTechClick = useCallback((name: string) => () => toggleFilter(name), [toggleFilter]);
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
+
+  const FilterButtons = () => (
+    <motion.div
+      className="flex flex-wrap gap-4"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+    >
+      <motion.div variants={item}>
+        <AllButton isActive={activeFilters.includes('All')} onClick={handleAllClick} />
+      </motion.div>
+      {TECHNOLOGIES.map(tech => (
+        <motion.div key={tech.name} variants={item}>
+          <TechButton
+            tech={tech}
+            isActive={activeFilters.includes(tech.name)}
+            onToggle={handleTechClick(tech.name)}
+          />
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+
   return (
     <div className="mb-12">
       {isDrawerVisible ? (
         <Drawer>
           <DrawerTrigger asChild>
-            <button className="w-full p-3 glass rounded-xl flex items-center justify-between">
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-full p-3 glass rounded-xl flex items-center justify-between"
+            >
               <span>Filter Projects</span>
               <FiFilter className="w-5 h-5" />
-            </button>
+            </motion.button>
           </DrawerTrigger>
           <DrawerContent>
             <div className="mx-auto w-full max-w-sm">
@@ -37,33 +81,13 @@ export const TechFilters = () => {
                 <DrawerTitle>Filter Projects</DrawerTitle>
               </DrawerHeader>
               <div className="p-4 overflow-y-auto max-h-[60vh]">
-                <div className="flex flex-wrap gap-4">
-                  <AllButton isActive={activeFilters.includes('All')} onClick={handleAllClick} />
-                  {TECHNOLOGIES.map(tech => (
-                    <TechButton
-                      key={tech.name}
-                      tech={tech}
-                      isActive={activeFilters.includes(tech.name)}
-                      onToggle={handleTechClick(tech.name)}
-                    />
-                  ))}
-                </div>
+                <FilterButtons />
               </div>
             </div>
           </DrawerContent>
         </Drawer>
       ) : (
-        <div className="flex flex-wrap items-center gap-4">
-          <AllButton isActive={activeFilters.includes('All')} onClick={handleAllClick} />
-          {TECHNOLOGIES.map(tech => (
-            <TechButton
-              key={tech.name}
-              tech={tech}
-              isActive={activeFilters.includes(tech.name)}
-              onToggle={handleTechClick(tech.name)}
-            />
-          ))}
-        </div>
+        <FilterButtons />
       )}
     </div>
   );

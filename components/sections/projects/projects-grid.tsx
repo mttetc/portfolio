@@ -1,8 +1,8 @@
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
-import { ProjectCard } from './project-card';
 import { useButton } from '@react-aria/button';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useRef } from 'react';
 
 // Lazy load ProjectCard
 const LazyProjectCard = dynamic(() => import('./project-card').then(mod => mod.ProjectCard), {
@@ -36,18 +36,32 @@ export const ProjectsGrid = () => {
 
   return (
     <div className="space-y-8">
-      <div role="grid" aria-label="Projects grid">
-        <div role="row" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div role="grid" aria-label="Projects grid">
+        <motion.div role="row" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[...Array(Math.min(visibleCount, filteredProjects.length))].map((_, i) => (
-            <div key={filteredProjects[i].name} role="gridcell" className="h-full">
+            <motion.div
+              key={filteredProjects[i].name}
+              role="gridcell"
+              className="h-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
               <LazyProjectCard project={filteredProjects[i]} />
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {hasMore && (
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
           <button
             {...buttonProps}
             ref={buttonRef}
@@ -55,7 +69,7 @@ export const ProjectsGrid = () => {
           >
             Show More
           </button>
-        </div>
+        </motion.div>
       )}
     </div>
   );

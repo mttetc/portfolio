@@ -265,7 +265,6 @@ body {
 
 .rgb-border {
   position: relative;
-  border-radius: 9999px;
   padding: 0.25rem;
 }
 
@@ -273,7 +272,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 9999px;
+  border-radius: 2rem;
   padding: 2px;
   background: conic-gradient(
     from var(--angle),
@@ -308,6 +307,7 @@ body {
 }
 .glass {
   background: var(--glass-bg);
+  /* backdrop-filter: blur(var(--glass-blur)); */
   border: 1px solid var(--glass-border);
   border-radius: 1rem;
 
@@ -343,7 +343,7 @@ body {
 }
 
 .rounded-full {
-  border-radius: 9999px;
+  border-radius: 2rem;
 }
 * {
   cursor: none !important;
