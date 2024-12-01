@@ -1,6 +1,6 @@
 'use client';
 
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { contactAction } from '@/lib/actions/contact';
 import { motion } from 'framer-motion';
 import { useActionState, useEffect } from 'react';
@@ -42,24 +42,16 @@ const initialState = {
 
 export function ContactForm() {
   const [state, formAction] = useActionState(contactAction, initialState);
-  const { toast } = useToast();
 
   useEffect(() => {
     if (state?.success) {
-      toast({
-        title: 'Message Sent Successfully',
+      toast.success('Message Sent Successfully', {
         description: "Thanks for reaching out! I'll get back to you soon.",
-        duration: 4000,
       });
     } else if (state?.error) {
-      toast({
-        title: 'Error',
-        description: state.error,
-        variant: 'destructive',
-        duration: 4000,
-      });
+      toast.error(state.error);
     }
-  }, [state, toast]);
+  }, [state]);
 
   return (
     <motion.form

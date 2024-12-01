@@ -4,7 +4,7 @@ import { CustomCursor } from '@/components/custom-cursor';
 import { ScrollProgress } from '@/components/scroll-progress';
 import ScrollToTop from '@/components/scroll-to-top';
 import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { useDeviceCursor } from '@/hooks/use-device-cursor';
 
