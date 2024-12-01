@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { CSSProperties, ReactElement, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { CSSProperties, ReactElement, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface Sparkle {
   id: string;
@@ -62,7 +62,7 @@ interface SparklesTextProps {
 
 const SparklesText: React.FC<SparklesTextProps> = ({
   text,
-  colors = { first: "#9E7AFF", second: "#FE8BBB" },
+  colors = { first: '#9E7AFF', second: '#FE8BBB' },
   className,
   sparklesCount = 10,
   ...props
@@ -87,14 +87,14 @@ const SparklesText: React.FC<SparklesTextProps> = ({
     };
 
     const updateStars = () => {
-      setSparkles((currentSparkles) =>
-        currentSparkles.map((star) => {
+      setSparkles(currentSparkles =>
+        currentSparkles.map(star => {
           if (star.lifespan <= 0) {
             return generateStar();
           } else {
             return { ...star, lifespan: star.lifespan - 0.1 };
           }
-        }),
+        })
       );
     };
 
@@ -102,21 +102,22 @@ const SparklesText: React.FC<SparklesTextProps> = ({
     const interval = setInterval(updateStars, 100);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colors.first, colors.second]);
 
   return (
     <div
-      className={cn("text-6xl font-bold", className)}
+      className={cn('text-6xl font-bold', className)}
       {...props}
       style={
         {
-          "--sparkles-first-color": `${colors.first}`,
-          "--sparkles-second-color": `${colors.second}`,
+          '--sparkles-first-color': `${colors.first}`,
+          '--sparkles-second-color': `${colors.second}`,
         } as CSSProperties
       }
     >
       <span className="relative inline-block">
-        {sparkles.map((sparkle) => (
+        {sparkles.map(sparkle => (
           <Sparkle key={sparkle.id} {...sparkle} />
         ))}
         <strong>{text}</strong>

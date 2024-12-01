@@ -19,6 +19,7 @@ type ActionResponse = {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function contactAction(prevState: any, formData: FormData): Promise<ActionResponse> {
   const headersList = await headers();
   const ip = headersList.get('x-forwarded-for') ?? '127.0.0.1';
