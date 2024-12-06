@@ -148,7 +148,7 @@ export default function Hero() {
               <button
                 {...buttonProps}
                 ref={buttonRef}
-                className="px-6 md:px-8 py-2.5 md:py-3 relative z-10 block glass interactive rounded-full text-sm md:text-base lg:text-lg"
+                className="px-6 md:px-8 py-2.5 md:py-3 relative z-10 block glass interactive rounded-full text-sm md:text-base lg:text-lg xl:text-xl"
               >
                 Get in Touch
               </button>
