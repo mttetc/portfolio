@@ -75,9 +75,9 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
           <div className="space-y-6">
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: 20 }}
+              viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="prose prose-invert"
             >
               <h3 className="text-2xl font-outfit">Let&apos;s Create Something Amazing Together</h3>
               <p className="text-[hsl(var(--text-secondary))]">
