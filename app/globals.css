@@ -132,6 +132,16 @@
       cursor: auto !important;
     }
   }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--text-primary));
+  }
+
+  ::-moz-selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--text-primary));
+  }
 }
 
 @property --x {

@@ -10,7 +10,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Portfolio | Matthias Etchegaray',
   description: 'Just my projects',
 };
 
