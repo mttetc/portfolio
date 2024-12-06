@@ -28,7 +28,7 @@ export function SectionTitle({ title, icon }: SectionTitleProps) {
       <div className="p-3 glass rounded-xl">
         <Icon className="w-8 h-8 text-purple-400" />
       </div>
-      <h2 className="text-4xl font-bold">{title}</h2>
+      <h2 className="text-4xl lg:text-5xl font-bold">{title}</h2>
     </motion.div>
   );
 }
