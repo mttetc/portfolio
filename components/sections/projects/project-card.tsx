@@ -51,7 +51,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
       transition={{ duration: 0.2 }}
       className="gradient-border group h-full"
     >
-      <div className="p-6 glass h-full flex flex-col will-change-transform">
+      <div className="p-6 glass animated h-full flex flex-col will-change-transform">
         <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-[hsl(var(--adaptive-primary)_/_0.1)]">
           <Image
             src={project.image}
@@ -63,7 +63,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
             loading={project.name === 'Quaestio' ? 'eager' : 'lazy'}
             placeholder="blur"
           />
-          <div className="absolute inset-0 bg-black/50 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+          <div className="absolute inset-0 bg-black/30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
             {project.github && (
               <button
                 {...githubProps}

@@ -68,7 +68,7 @@ export default function Contact() {
   const refs = [githubRef, linkedinRef, emailRef];
 
   return (
-    <section id="contact" className="min-h-screen py-20">
+    <section id="contact" className="py-20">
       <div className="max-w-7xl mx-auto">
         <SectionTitle title="Get in Touch" icon="contact" />
 

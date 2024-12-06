@@ -59,75 +59,76 @@ export function ContactForm() {
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      className="space-y-4"
     >
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2 md:col-span-1">
+      <div className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-2 md:col-span-1">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              defaultValue={state.values?.name}
+              className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                state.fieldErrors?.name
+                  ? 'ring-2 ring-red-500 focus:ring-red-500'
+                  : 'focus:ring-[hsl(var(--primary))]'
+              }`}
+            />
+            {state.fieldErrors?.name && (
+              <span className="text-sm text-red-500 mt-1">{state.fieldErrors.name}</span>
+            )}
+          </div>
+          <div className="col-span-2 md:col-span-1">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              defaultValue={state.values?.email}
+              className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                state.fieldErrors?.email
+                  ? 'ring-2 ring-red-500 focus:ring-red-500'
+                  : 'focus:ring-[hsl(var(--primary))]'
+              }`}
+            />
+            {state.fieldErrors?.email && (
+              <span className="text-sm text-red-500 mt-1">{state.fieldErrors.email}</span>
+            )}
+          </div>
+        </div>
+        <div>
           <input
             type="text"
-            name="name"
-            placeholder="Name"
-            defaultValue={state.values?.name}
+            name="subject"
+            placeholder="Subject"
+            defaultValue={state.values?.subject}
             className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
-              state.fieldErrors?.name
+              state.fieldErrors?.subject
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
                 : 'focus:ring-[hsl(var(--primary))]'
             }`}
           />
-          {state.fieldErrors?.name && (
-            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.name}</span>
+          {state.fieldErrors?.subject && (
+            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.subject}</span>
           )}
         </div>
-        <div className="col-span-2 md:col-span-1">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            defaultValue={state.values?.email}
-            className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
-              state.fieldErrors?.email
+        <div>
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows={6}
+            defaultValue={state.values?.message}
+            className={`glass w-full p-4 placeholder:text-[hsl(var(--text-muted))] rounded-xl focus:outline-none focus:ring-2 transition-all resize-none ${
+              state.fieldErrors?.message
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
                 : 'focus:ring-[hsl(var(--primary))]'
             }`}
           />
-          {state.fieldErrors?.email && (
-            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.email}</span>
+          {state.fieldErrors?.message && (
+            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.message}</span>
           )}
         </div>
+        <SubmitButton />
       </div>
-      <div>
-        <input
-          type="text"
-          name="subject"
-          placeholder="Subject"
-          defaultValue={state.values?.subject}
-          className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
-            state.fieldErrors?.subject
-              ? 'ring-2 ring-red-500 focus:ring-red-500'
-              : 'focus:ring-[hsl(var(--primary))]'
-          }`}
-        />
-        {state.fieldErrors?.subject && (
-          <span className="text-sm text-red-500 mt-1">{state.fieldErrors.subject}</span>
-        )}
-      </div>
-      <div>
-        <textarea
-          name="message"
-          placeholder="Message"
-          rows={6}
-          defaultValue={state.values?.message}
-          className={`glass w-full p-4 placeholder:text-[hsl(var(--text-muted))] rounded-xl focus:outline-none focus:ring-2 transition-all resize-none ${
-            state.fieldErrors?.message
-              ? 'ring-2 ring-red-500 focus:ring-red-500'
-              : 'focus:ring-[hsl(var(--primary))]'
-          }`}
-        />
-        {state.fieldErrors?.message && (
-          <span className="text-sm text-red-500 mt-1">{state.fieldErrors.message}</span>
-        )}
-      </div>
-      <SubmitButton />
     </motion.form>
   );
 }

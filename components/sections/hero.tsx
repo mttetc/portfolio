@@ -64,7 +64,7 @@ const iconCloudVariants = {
 const IconCloudSection = memo(function IconCloudSection({ isInView }: { isInView: boolean }) {
   return (
     <div
-      className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] mx-auto"
+      className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto"
       aria-hidden
     >
       <motion.div
@@ -105,6 +105,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: isInView ? 1 : 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            height: '100%',
+          }}
         >
           <Particles color={getCssVar('--primary')} />
         </motion.div>
@@ -118,22 +121,25 @@ export default function Hero() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
-            className="text-center lg:text-left flex flex-col gap-4"
+            className="text-center items-center lg:items-start lg:text-left flex flex-col gap-4"
           >
-            <BoxReveal width="100%">
-              <h2 className="text-lg md:text-xl">Hello, I&apos;m</h2>
+            <BoxReveal>
+              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello, I&apos;m</h2>
             </BoxReveal>
 
-            <BoxReveal width="100%">
+            <BoxReveal>
               <TextGradient>
-                <h1 id="hero-title" className="text-5xl md:text-7xl font-bold">
+                <h1
+                  id="hero-title"
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
+                >
                   {FIRST_NAME}
                 </h1>
               </TextGradient>
             </BoxReveal>
 
-            <BoxReveal width="100%">
-              <p className="text-xl md:text-2xl text-[hsl(var(--text-primary))] h-8">
+            <BoxReveal>
+              <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))] h-8">
                 I&apos;m a <TypingAnimation texts={texts} />
               </p>
             </BoxReveal>
@@ -142,7 +148,7 @@ export default function Hero() {
               <button
                 {...buttonProps}
                 ref={buttonRef}
-                className="px-6 md:px-8 py-2.5 md:py-3 relative z-10 block glass interactive rounded-full text-sm md:text-base"
+                className="px-6 md:px-8 py-2.5 md:py-3 relative z-10 block glass interactive rounded-full text-sm md:text-base lg:text-lg"
               >
                 Get in Touch
               </button>
