@@ -16,7 +16,7 @@ function SubmitButton() {
       disabled={pending}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="w-full p-4 rounded-xl font-medium relative overflow-hidden group disabled:opacity-70"
+      className="w-full p-4 rounded-xl font-medium relative overflow-hidden group disabled:opacity-70 text-white"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] transition-transform group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--primary))] opacity-0 transition-opacity group-hover:opacity-100" />
