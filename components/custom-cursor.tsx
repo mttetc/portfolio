@@ -12,6 +12,7 @@ export function CustomCursor() {
   const targetScale = useRef(1);
   const mouseX = useRef(0);
   const mouseY = useRef(0);
+  const isMouseDown = useRef(false);
 
   const animateScale = useCallback(() => {
     if (!cursor.current) return;
@@ -43,6 +44,7 @@ export function CustomCursor() {
 
   const handleMouseOver = useCallback(
     (e: MouseEvent) => {
+      if (isMouseDown.current) return;
       const target = e.target as HTMLElement;
       if (isInteractive(target)) {
         cursorEnlarged.current = true;
@@ -71,12 +73,14 @@ export function CustomCursor() {
       toggleCursorVisibility();
     };
 
-    const onMouseDown = () => {
+    const onPointerDown = () => {
+      isMouseDown.current = true;
       targetScale.current = 0.8;
       requestAnimationFrame(animateScale);
     };
 
-    const onMouseUp = (e: MouseEvent) => {
+    const onPointerUp = (e: PointerEvent) => {
+      isMouseDown.current = false;
       const target = e.target as HTMLElement;
       targetScale.current = isInteractive(target) ? 2 : 1;
       requestAnimationFrame(animateScale);
@@ -85,15 +89,15 @@ export function CustomCursor() {
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
     document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mousedown', onMouseDown);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('pointerdown', onPointerDown, { capture: true });
+    document.addEventListener('pointerup', onPointerUp, { capture: true });
 
     return () => {
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
       document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mousedown', onMouseDown);
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('pointerdown', onPointerDown, { capture: true });
+      document.removeEventListener('pointerup', onPointerUp, { capture: true });
     };
   }, [
     handleMouseOver,

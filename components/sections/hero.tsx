@@ -139,7 +139,7 @@ export default function Hero() {
             </BoxReveal>
 
             <BoxReveal>
-              <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))] h-8">
+              <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))]">
                 I&apos;m a <TypingAnimation texts={texts} />
               </p>
             </BoxReveal>
