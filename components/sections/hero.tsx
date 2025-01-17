@@ -126,11 +126,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: isInView ? 1 : 0 }}
           transition={{ duration: 0.5 }}
+          className="h-full"
           style={{
             height: '100%',
           }}
         >
-          <Particles color={getCssVar('--primary')} />
+          <Particles color={getCssVar('--primary')} className="h-full" />
         </motion.div>
       </div>
 
