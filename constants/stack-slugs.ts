@@ -5,7 +5,7 @@ export const STACK_SLUGS = [
   'nodedotjs',
   'postgresql',
   'docker',
-  'amazonaws',
+  'amazonwebservices',
   'figma',
   'tailwindcss',
   'prisma',

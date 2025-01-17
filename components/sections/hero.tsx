@@ -9,7 +9,6 @@ import { useButton } from '@react-aria/button';
 import { motion, useInView } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useRef, memo } from 'react';
-import BoxReveal from '../ui/box-reveal';
 import Particles from '../ui/particles';
 
 const IconCloud = dynamic(() => import('@/components/ui/icon-cloud'), {
@@ -35,8 +34,12 @@ const texts = [
 
 const contentVariants = {
   hidden: {
+    x: 0,
+    y: -20,
     opacity: 0,
-    x: -20,
+    '@media (min-width: 1024px)': {
+      x: 20,
+    },
   },
   visible: {
     opacity: 1,
@@ -47,11 +50,11 @@ const contentVariants = {
 
 const iconCloudVariants = {
   hidden: {
+    x: 0,
+    y: -20,
     opacity: 0,
-    x: 20,
-    '@media (max-width: 1024px)': {
-      x: 0,
-      y: -20,
+    '@media (min-width: 1024px)': {
+      x: 20,
     },
   },
   visible: {
@@ -114,35 +117,29 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           <motion.div
             variants={contentVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="text-center items-center lg:items-start lg:text-left flex flex-col gap-4"
           >
-            <BoxReveal>
-              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello, I&apos;m</h2>
-            </BoxReveal>
+            <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello, I&apos;m</h2>
 
-            <BoxReveal>
-              <TextGradient>
-                <h1
-                  id="hero-title"
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
-                >
-                  {FIRST_NAME}
-                </h1>
-              </TextGradient>
-            </BoxReveal>
+            <TextGradient>
+              <h1
+                id="hero-title"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
+              >
+                {FIRST_NAME}
+              </h1>
+            </TextGradient>
 
-            <BoxReveal>
-              <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))]">
-                I&apos;m a <TypingAnimation texts={texts} />
-              </p>
-            </BoxReveal>
+            <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))]">
+              I&apos;m a <TypingAnimation texts={texts} />
+            </p>
 
             <div className="rgb-border inline-block mt-4 self-center lg:self-start">
               <button
