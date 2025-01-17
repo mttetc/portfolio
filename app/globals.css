@@ -27,7 +27,7 @@
     --muted: 267 45% 26%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 322 100% 60%;
+    --accent: 270 100% 60%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -74,7 +74,7 @@
     --muted: 267 45% 96%;
     --muted-foreground: 267 35% 25%;
 
-    --accent: 322 100% 60%;
+    --accent: 270 100% 60%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -437,5 +437,14 @@ select,
 
   .fade-out-80 {
     animation: fade-out 150ms ease-in;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
   }
 }

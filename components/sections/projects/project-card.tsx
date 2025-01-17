@@ -1,6 +1,6 @@
 import { PROJECTS } from '@/constants/projects';
 import { TECHNOLOGIES } from '@/constants/technologies';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { memo, useMemo, useRef } from 'react';
 import { FiExternalLink } from 'react-icons/fi';

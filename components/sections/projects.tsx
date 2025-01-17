@@ -1,7 +1,7 @@
 'use client';
 
 import { SectionTitle } from '@/components/section-title';
-import { useInView } from 'framer-motion';
+import { useInView } from 'motion/react';
 import { memo, useRef } from 'react';
 import { ProjectsGrid } from './projects/projects-grid';
 import { TechFilters } from './projects/tech-filters';

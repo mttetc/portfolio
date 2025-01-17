@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner';
 import { contactAction } from '@/lib/actions/contact';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { FiSend } from 'react-icons/fi';

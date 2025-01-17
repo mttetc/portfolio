@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { SectionTitle } from '@/components/section-title';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { EMAIL, NICKNAME } from '@/constants/names';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { ContactForm } from '../contact-form';
 

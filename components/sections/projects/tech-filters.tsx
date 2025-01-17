@@ -12,7 +12,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { isMobile, isTablet } from 'react-device-detect';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const AnimatedAllButton = memo(function AnimatedAllButton({
   isActive,

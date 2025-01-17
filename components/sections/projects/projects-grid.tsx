@@ -1,6 +1,6 @@
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
 import { useButton } from '@react-aria/button';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 

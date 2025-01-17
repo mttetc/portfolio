@@ -1,14 +1,14 @@
 'use client';
 
-import TextGradient from '@/components/text-gradient';
 import TypingAnimation from '@/components/typing-animation';
 import { FIRST_NAME } from '@/constants/names';
 import { STACK_SLUGS } from '@/constants/stack-slugs';
 import { getCssVar } from '@/lib/utils';
 import { useButton } from '@react-aria/button';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView } from 'motion/react';
 import dynamic from 'next/dynamic';
-import { useRef, memo } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
+import TextGradient from '../text-gradient';
 import Particles from '../ui/particles';
 
 const IconCloud = dynamic(() => import('@/components/ui/icon-cloud'), {
@@ -32,46 +32,63 @@ const texts = [
   'Team Player',
 ];
 
-const contentVariants = {
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
+
+  return isDesktop;
+}
+
+const getContentVariants = (isDesktop: boolean) => ({
   hidden: {
-    x: 0,
-    y: -20,
     opacity: 0,
-    '@media (min-width: 1024px)': {
-      x: 20,
-    },
+    x: isDesktop ? 20 : 0,
+    y: isDesktop ? 0 : -20,
   },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
   },
-};
+});
 
-const iconCloudVariants = {
+const getIconCloudVariants = (isDesktop: boolean) => ({
   hidden: {
-    x: 0,
-    y: -20,
     opacity: 0,
-    '@media (min-width: 1024px)': {
-      x: 20,
-    },
+    x: isDesktop ? 20 : 0,
+    y: isDesktop ? 0 : -20,
   },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
   },
-};
+});
 
-const IconCloudSection = memo(function IconCloudSection({ isInView }: { isInView: boolean }) {
+const IconCloudSection = memo(function IconCloudSection({
+  isInView,
+  isDesktop,
+}: {
+  isInView: boolean;
+  isDesktop: boolean;
+}) {
   return (
     <div
       className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto"
       aria-hidden
     >
       <motion.div
-        variants={iconCloudVariants}
+        variants={getIconCloudVariants(isDesktop)}
         initial="hidden"
         whileInView="visible"
         transition={{ duration: 0.3 }}
@@ -95,6 +112,7 @@ export default function Hero() {
     },
     buttonRef
   );
+  const isDesktop = useIsDesktop();
 
   return (
     <section
@@ -116,10 +134,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
+      <div className="relative w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           <motion.div
-            variants={contentVariants}
+            variants={getContentVariants(isDesktop)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -128,14 +146,13 @@ export default function Hero() {
           >
             <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello, I&apos;m</h2>
 
-            <TextGradient>
-              <h1
-                id="hero-title"
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
-              >
-                {FIRST_NAME}
-              </h1>
-            </TextGradient>
+            <h1
+              id="hero-title"
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+              style={{ letterSpacing: '-2px' }}
+            >
+              <TextGradient>{FIRST_NAME}</TextGradient>
+            </h1>
 
             <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))]">
               I&apos;m a <TypingAnimation texts={texts} />
@@ -152,7 +169,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <IconCloudSection isInView={isInView} />
+          <IconCloudSection isInView={isInView} isDesktop={isDesktop} />
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import { useThemeStore } from '@/lib/stores/use-theme-store';
 import { useEffect } from 'react';
