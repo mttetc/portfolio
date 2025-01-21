@@ -14,7 +14,7 @@ import Particles from '../ui/particles';
 const IconCloud = dynamic(() => import('@/components/ui/icon-cloud'), {
   ssr: false,
   loading: () => (
-    <div className="relative aspect-square animate-pulse">
+    <div className="relative animate-pulse">
       <div className="absolute inset-0 glass rounded-2xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20" />
       </div>
