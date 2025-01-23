@@ -84,7 +84,7 @@ const IconCloudSection = memo(function IconCloudSection({
 }) {
   return (
     <div
-      className="relative aspect-square w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto"
+      className="relative w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto"
       aria-hidden
     >
       <motion.div
