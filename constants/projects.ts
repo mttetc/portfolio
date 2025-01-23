@@ -56,6 +56,13 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    image: getProjectImage('todosExpress'),
+    name: 'TodosExpress',
+    github: 'https://github.com/mttetc/todosExpress',
+    description: 'Simple todos app with Express.js with JWT authentication',
+    stack: ['JavaScript', 'Node.js', 'Express.js', 'SQLite'],
+  },
+  {
     image: getProjectImage('obat'),
     name: 'Obat',
     url: 'https://www.obat.fr/',

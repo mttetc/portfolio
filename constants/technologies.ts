@@ -20,6 +20,8 @@ import {
   SiSass,
   SiRedux,
   SiNodedotjs,
+  SiExpress,
+  SiSqlite,
 } from 'react-icons/si';
 import { TbBrandReactNative } from 'react-icons/tb';
 import { BiLogoJavascript } from 'react-icons/bi';
@@ -39,6 +41,12 @@ export const TECHNOLOGIES: Technology[] = [
   { name: 'React', icon: SiReact, color: BRAND_COLORS.react, url: 'https://react.dev' },
   { name: 'Next.js', icon: SiNextdotjs, color: BRAND_COLORS.nextjs, url: 'https://nextjs.org' },
   { name: 'Node.js', icon: SiNodedotjs, color: BRAND_COLORS.nodejs, url: 'https://nodejs.org' },
+  {
+    name: 'Express.js',
+    icon: SiExpress,
+    color: BRAND_COLORS.express,
+    url: 'https://expressjs.com',
+  },
   {
     name: 'TypeScript',
     icon: SiTypescript,
@@ -70,6 +78,12 @@ export const TECHNOLOGIES: Technology[] = [
     icon: SiStyledcomponents,
     color: BRAND_COLORS.styledComponents,
     url: 'https://styled-components.com',
+  },
+  {
+    name: 'SQLite',
+    icon: SiSqlite,
+    color: BRAND_COLORS.sqlite,
+    url: 'https://sqlite.org',
   },
   { name: 'Material UI', icon: SiMui, color: BRAND_COLORS.materialui, url: 'https://mui.com' },
   { name: 'Chakra UI', icon: SiChakraui, color: BRAND_COLORS.chakra, url: 'https://chakra-ui.com' },

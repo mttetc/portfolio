@@ -4,6 +4,7 @@ import { StaticImageData } from 'next/image';
 export const TechStackEnum = z.enum([
   'React',
   'Next.js',
+  'Express.js',
   'TypeScript',
   'JavaScript',
   'React Native',
@@ -32,6 +33,7 @@ export const TechStackEnum = z.enum([
   'Twig',
   'Wordpress',
   'AI',
+  'SQLite',
 ]);
 
 export const ProjectSchema = z.object({

@@ -23,4 +23,6 @@ export const BRAND_COLORS = {
   wordpress: '#21759B',
   twitter: '#1DA1F2',
   docker: '#2496ED',
+  sqlite: '#F1F1F1',
+  express: '#000000',
 } as const;

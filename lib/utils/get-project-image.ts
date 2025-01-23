@@ -35,6 +35,7 @@ const images = {
   pagesjaunes,
   quaestio: placeholder,
   videobookmark: placeholder,
+  todosExpress: placeholder,
 } as const;
 
 export type ProjectImage = keyof typeof images;

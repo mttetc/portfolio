@@ -45,13 +45,11 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
   return (
     <motion.article
       aria-labelledby={`project-${project.name}`}
-      initial={false}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.2 }}
       className="gradient-border group h-full"
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.15 }}
     >
-      <div className="p-6 glass animated h-full flex flex-col will-change-transform">
+      <div className="p-6 glass h-full flex flex-col will-change-transform">
         <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-[hsl(var(--adaptive-primary)_/_0.1)]">
           <Image
             src={project.image}

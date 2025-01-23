@@ -10,9 +10,7 @@ export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => (
   <button
     onClick={onToggle}
     className={`
-      px-4 py-2 rounded-full flex items-center gap-2 
-      transition-all duration-200 ease-out
-      hover:scale-[1.02] active:scale-[0.98]
+      px-2 py-1 rounded-full flex items-center gap-2 
       ${isActive ? 'glass border' : 'glass'}
     `}
     style={{
@@ -22,12 +20,12 @@ export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => (
   >
     <div className="relative">
       <tech.icon
-        size={20}
+        size={16}
         color={tech.color}
-        className={`transition-opacity ${isActive ? 'opacity-100' : 'opacity-70'}`}
+        className={isActive ? 'opacity-100' : 'opacity-70'}
       />
       <div
-        className="absolute inset-0 blur-sm transition-opacity"
+        className="absolute inset-0 blur-sm"
         style={{
           backgroundColor: tech.color,
           opacity: isActive ? 0.1 : 0.05,
@@ -37,6 +35,7 @@ export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => (
       />
     </div>
     <span
+      className="text-sm"
       style={{
         color: isActive ? tech.color : undefined,
         textShadow: isActive ? `0 0 10px ${tech.color}20` : undefined,

@@ -1,8 +1,8 @@
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
 import { useButton } from '@react-aria/button';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import dynamic from 'next/dynamic';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 
 // Lazy load ProjectCard
 const LazyProjectCard = dynamic(() => import('./project-card').then(mod => mod.ProjectCard), {
@@ -23,6 +23,10 @@ export const ProjectsGrid = () => {
   const showMore = useProjectsStore(state => state.showMore);
   const buttonRef = useRef(null);
 
+  const visibleProjects = useMemo(
+    () => filteredProjects.slice(0, visibleCount),
+    [filteredProjects, visibleCount]
+  );
   const hasMore = visibleCount < filteredProjects.length;
   const remainingCount = filteredProjects.length - visibleCount;
 
@@ -36,31 +40,41 @@ export const ProjectsGrid = () => {
 
   return (
     <div className="space-y-8">
-      <motion.div role="grid" aria-label="Projects grid">
-        <motion.div role="row" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[...Array(Math.min(visibleCount, filteredProjects.length))].map((_, i) => (
-            <motion.div
-              key={filteredProjects[i].name}
-              role="gridcell"
-              className="h-full"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-            >
-              <LazyProjectCard project={filteredProjects[i]} />
-            </motion.div>
-          ))}
+      <div role="grid" aria-label="Projects grid">
+        <motion.div 
+          role="row" 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map(project => (
+              <motion.div
+                key={project.name}
+                role="gridcell"
+                className="h-full"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{
+                  opacity: { duration: 0.15 },
+                  scale: { duration: 0.15 },
+                  layout: { duration: 0.3, type: "spring", bounce: 0.15 }
+                }}
+                layout
+              >
+                <LazyProjectCard project={project} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
-      </motion.div>
+      </div>
 
       {hasMore && (
         <motion.div
           className="flex justify-center"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
           <button
             {...buttonProps}
