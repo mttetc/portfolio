@@ -56,11 +56,11 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    image: getProjectImage('todosExpress'),
-    name: 'TodosExpress',
-    github: 'https://github.com/mttetc/todosExpress',
-    description: 'Simple todos app with Express.js with JWT authentication',
-    stack: ['JavaScript', 'Node.js', 'Express.js', 'SQLite'],
+    image: getProjectImage('taskFlow'),
+    name: 'TaskFlow',
+    github: 'https://github.com/mttetc/TaskFlow',
+    description: 'Kanban board app with task management',
+    stack: ['TypeScript', 'React', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma'],
   },
   {
     image: getProjectImage('obat'),

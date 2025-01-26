@@ -33,7 +33,7 @@ export const TechStackEnum = z.enum([
   'Twig',
   'Wordpress',
   'AI',
-  'SQLite',
+  'Prisma',
 ]);
 
 export const ProjectSchema = z.object({

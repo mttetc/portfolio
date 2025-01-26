@@ -22,5 +22,4 @@ export const STACK_SLUGS = [
   'drizzle',
   'github',
   'gitlab',
-  'sqlite',
 ];
