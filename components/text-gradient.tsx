@@ -11,7 +11,7 @@ export default function TextGradient({ children, className = '' }: TextGradientP
       className={`
         inline-block 
         bg-clip-text text-transparent 
-        bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--secondary))] to-[hsl(var(--accent))] from-[hsl(var(--primary))]
+        bg-gradient-to-r from-pink-500 via-purple-500 to-violet-500
         animate-[gradient_4s_linear_infinite]
         bg-[length:200%_auto]
         ${className}

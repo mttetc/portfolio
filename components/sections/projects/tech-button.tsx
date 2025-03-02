@@ -9,21 +9,14 @@ interface TechButtonProps {
 export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => (
   <button
     onClick={onToggle}
-    className={`
-      px-2 py-1 rounded-full flex items-center gap-2 
-      ${isActive ? 'glass border' : 'glass'}
-    `}
+    className={`px-2 py-1 rounded-full flex items-center gap-2 bg-muted border`}
     style={{
       borderColor: isActive ? `${tech.color}30` : undefined,
       background: isActive ? `linear-gradient(90deg, ${tech.color}10, ${tech.color}05)` : undefined,
     }}
   >
     <div className="relative">
-      <tech.icon
-        size={16}
-        color={tech.color}
-        className={isActive ? 'opacity-100' : 'opacity-70'}
-      />
+      <tech.icon size={16} color={tech.color} className={isActive ? 'opacity-100' : 'opacity-70'} />
       <div
         className="absolute inset-0 blur-sm"
         style={{

@@ -11,7 +11,7 @@ export default memo(function Projects() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} id="projects" className="min-h-screen py-20">
+    <section ref={ref} id="projects" className="py-20 p-4 md:p-10 min-h-full">
       <div className="max-w-7xl mx-auto">
         <SectionTitle title="Projects" icon="projects" />
 

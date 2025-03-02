@@ -9,7 +9,7 @@ export const TechBadge = ({ tech }: TechBadgeProps) => {
   return (
     <span
       role="listitem"
-      className="px-3 py-1 text-sm rounded-full glass"
+      className="px-3 py-1 text-sm rounded-full bg-muted"
       style={{ color: tech.color }}
     >
       <span className="flex items-center gap-1.5">

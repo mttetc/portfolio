@@ -22,12 +22,8 @@ export const AllButton = ({ isActive, onClick }: AllButtonProps) => {
       {...buttonProps}
       ref={ref}
       className={`
-        px-2 py-1 rounded-full text-sm
-        ${
-          isActive
-            ? 'bg-gradient-to-r from-[hsl(var(--adaptive-primary)_/_0.2)] to-[hsl(var(--adaptive-primary)_/_0.1)] border border-[hsl(var(--adaptive-primary)_/_0.3)] text-[hsl(var(--adaptive-primary))]'
-            : 'glass'
-        }
+        px-2 py-1 rounded-full text-sm border
+        ${isActive ? 'bg-primary text-white' : 'bg-primary/30'}
       `}
     >
       All

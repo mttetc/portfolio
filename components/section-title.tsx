@@ -1,22 +1,20 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { IconType } from 'react-icons';
-import { FiCode, FiMail, FiUser } from 'react-icons/fi';
 
 interface SectionTitleProps {
   title: string;
   icon: 'projects' | 'about' | 'contact';
 }
 
-const icons: Record<string, IconType> = {
-  projects: FiCode,
-  about: FiUser,
-  contact: FiMail,
+const emojis: Record<string, string> = {
+  projects: '🚀',
+  about: '👨‍💻',
+  contact: '📬',
 };
 
 export function SectionTitle({ title, icon }: SectionTitleProps) {
-  const Icon = icons[icon];
+  const emoji = emojis[icon];
 
   return (
     <motion.div
@@ -25,10 +23,9 @@ export function SectionTitle({ title, icon }: SectionTitleProps) {
       viewport={{ once: true }}
       className="flex items-center gap-4 mb-8"
     >
-      <div className="p-3 glass rounded-xl">
-        <Icon className="w-8 h-8 text-purple-400" />
-      </div>
-      <h2 className="text-4xl lg:text-5xl font-semibold">{title}</h2>
+      <h2 className="text-4xl lg:text-5xl font-semibold">
+        {emoji} {title}
+      </h2>
     </motion.div>
   );
 }

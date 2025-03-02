@@ -68,7 +68,7 @@ export function ContactForm() {
               name="name"
               placeholder="Name"
               defaultValue={state.values?.name}
-              className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
+              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
                 state.fieldErrors?.name
                   ? 'ring-2 ring-red-500 focus:ring-red-500'
                   : 'focus:ring-[hsl(var(--primary))]'
@@ -84,7 +84,7 @@ export function ContactForm() {
               name="email"
               placeholder="Email"
               defaultValue={state.values?.email}
-              className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
+              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
                 state.fieldErrors?.email
                   ? 'ring-2 ring-red-500 focus:ring-red-500'
                   : 'focus:ring-[hsl(var(--primary))]'
@@ -101,7 +101,7 @@ export function ContactForm() {
             name="subject"
             placeholder="Subject"
             defaultValue={state.values?.subject}
-            className={`glass w-full placeholder:text-[hsl(var(--text-muted))] p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
+            className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all ${
               state.fieldErrors?.subject
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
                 : 'focus:ring-[hsl(var(--primary))]'
@@ -117,7 +117,7 @@ export function ContactForm() {
             placeholder="Message"
             rows={6}
             defaultValue={state.values?.message}
-            className={`glass w-full p-4 placeholder:text-[hsl(var(--text-muted))] rounded-xl focus:outline-none focus:ring-2 transition-all resize-none ${
+            className={`bg-muted border w-full p-4 placeholder:text-muted-foreground rounded-xl focus:outline-none focus:ring-2 transition-all resize-none ${
               state.fieldErrors?.message
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
                 : 'focus:ring-[hsl(var(--primary))]'

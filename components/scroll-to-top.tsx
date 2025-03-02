@@ -6,18 +6,32 @@ import { useEffect, useState } from 'react';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollContainer, setScrollContainer] = useState<HTMLElement | null>(null);
 
+  // Find the scroll container after component mounts
   useEffect(() => {
-    const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 500);
-    };
-
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    const container = document.getElementById('scroll-container');
+    if (container) {
+      setScrollContainer(container);
+    }
   }, []);
 
+  useEffect(() => {
+    if (!scrollContainer) return;
+
+    const toggleVisibility = () => {
+      setIsVisible(scrollContainer.scrollTop > 500);
+    };
+
+    scrollContainer.addEventListener('scroll', toggleVisibility);
+    return () => scrollContainer.removeEventListener('scroll', toggleVisibility);
+  }, [scrollContainer]);
+
   const scrollToTop = () => {
-    window.scrollTo({
+    if (!scrollContainer) return;
+
+    // Use scrollTo instead of scrollIntoView to have better control
+    scrollContainer.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
@@ -28,7 +42,7 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
-      className="fixed bottom-6 right-6 z-50 p-3 glass rounded-full"
+      className="fixed bottom-14 right-6 z-50 p-3 bg-muted/30 border rounded-full"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Scroll to top of page"

@@ -37,7 +37,7 @@ export default function TypingAnimation({
   }, [text, isDeleting, wordIndex, texts, typingSpeed, deletingSpeed, pauseTime]);
 
   return (
-    <span className="font-semibold text-[hsl(var(--text-primary))]">
+    <span className="font-semibold">
       {text}
       <span className="animate-blink">|</span>
     </span>

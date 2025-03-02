@@ -45,7 +45,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
   return (
     <motion.article
       aria-labelledby={`project-${project.name}`}
-      className="relative h-[400px] group overflow-hidden rounded-xl"
+      className="relative h-[300px] sm:h-[350px] md:h-[400px] group overflow-hidden rounded-xl"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.15 }}
     >
@@ -55,19 +55,18 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
         fill
         className="object-cover z-0"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        priority={project.name === 'Quaestio'}
         loading={project.name === 'Quaestio' ? 'eager' : 'lazy'}
-        placeholder="blur"
+        placeholder={project.name === 'Quaestio' ? undefined : 'blur'}
       />
-      <div className="absolute inset-0 bg-black/70 dark:bg-black/70 bg-white/80 group-hover:bg-white/60 dark:group-hover:bg-black/50 transition-colors duration-300 z-10" />
+      <div className="absolute inset-0 bg-background/80 group-hover:bg-background/70 transition-colors duration-300 z-10" />
 
-      <div className="absolute inset-0 p-6 flex flex-col z-20 dark:text-white text-black">
+      <div className="absolute inset-0 p-3 sm:p-4 md:p-6 flex flex-col z-20 text-foreground">
         <div className="flex justify-end gap-4 mb-auto">
           {project.github && (
             <button
               {...githubProps}
               ref={githubRef}
-              className="p-2 bg-black/10 dark:bg-white/10 rounded-full hover:scale-105 active:scale-95 transition-transform"
+              className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"
               aria-label={`View ${project.name} source code on GitHub`}
             >
               <SiGithub className="w-6 h-6" aria-hidden="true" />
@@ -77,7 +76,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
             <button
               {...liveProps}
               ref={liveRef}
-              className="p-2 bg-black/10 dark:bg-white/10 rounded-full hover:scale-105 active:scale-95 transition-transform"
+              className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"
               aria-label={`Visit ${project.name} live site`}
             >
               <FiExternalLink className="w-6 h-6" aria-hidden="true" />
@@ -86,12 +85,17 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
         </div>
 
         <div className="mt-auto">
-          <h3 id={`project-${project.name}`} className="text-2xl font-semibold mb-4">
+          <h3
+            id={`project-${project.name}`}
+            className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4"
+          >
             {project.name}
           </h3>
-          <p className="text-black/80 dark:text-white/80 mb-4">{project.description}</p>
+          <p className="text-foreground/80 mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
+            {project.description}
+          </p>
           <div
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-2"
             role="list"
             aria-label={`Technologies used in ${project.name}`}
           >

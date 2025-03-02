@@ -14,21 +14,21 @@ const socialLinks = [
     name: 'GitHub',
     icon: FiGithub,
     link: `https://github.com/${NICKNAME}`,
-    color: '#6e5494',
+    color: 'hsl(var(--foreground))',
     hoverText: 'Check my repos',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
     link: `https://linkedin.com/in/${NICKNAME}`,
-    color: '#0077b5',
+    color: 'hsl(var(--foreground))',
     hoverText: 'Connect with me',
   },
   {
     name: 'Email',
     icon: FiMail,
     link: `mailto:${EMAIL}`,
-    color: '#ea4335',
+    color: 'hsl(var(--foreground))',
     hoverText: 'Send me an email',
   },
 ];
@@ -68,7 +68,7 @@ export default function Contact() {
   const refs = [githubRef, linkedinRef, emailRef];
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 p-4 md:p-10 min-h-full">
       <div className="max-w-7xl mx-auto">
         <SectionTitle title="Get in Touch" icon="contact" />
 
@@ -80,7 +80,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
             >
               <h3 className="text-2xl font-outfit">Let&apos;s Create Something Amazing Together</h3>
-              <p className="text-[hsl(var(--text-secondary))]">
+              <p className="text-muted-foreground">
                 I&apos;m always open to discussing new projects, creative ideas or opportunities to
                 be part of your visions.
               </p>
@@ -112,8 +112,7 @@ export default function Contact() {
                         {...linkProps[index]}
                         ref={refs[index]}
                         rel="noopener noreferrer"
-                        className="block p-4 glass interactive rounded-xl"
-                        style={{ color: social.color }}
+                        className="block p-4 bg-muted hover:bg-background/80 transition-colors rounded-xl border"
                       >
                         <social.icon size={24} aria-hidden="true" />
                         <span className="sr-only">Visit my {social.name} profile</span>

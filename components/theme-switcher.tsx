@@ -18,12 +18,9 @@ export function ThemeSwitcher() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 glass rounded-full"
+      className="fixed top-16 md:top-6 right-6 z-50 p-3 bg-muted/30 border rounded-full"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      animate={{
-        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.01)',
-      }}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
     >

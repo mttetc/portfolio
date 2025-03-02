@@ -93,7 +93,7 @@ export const TechFilters = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="w-full p-3 glass rounded-xl flex items-center justify-between"
+              className="w-full p-3 bg-muted border rounded-xl flex items-center justify-between"
             >
               <span>Filter Projects</span>
               <FiFilter className="w-5 h-5" />

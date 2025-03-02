@@ -2,35 +2,39 @@
 
 import TypingAnimation from '@/components/typing-animation';
 import { FIRST_NAME } from '@/constants/names';
-import { STACK_SLUGS } from '@/constants/stack-slugs';
-import { getCssVar } from '@/lib/utils';
 import { useButton } from '@react-aria/button';
-import { motion, useInView } from 'motion/react';
-import dynamic from 'next/dynamic';
-import { memo, useEffect, useRef, useState } from 'react';
-import TextGradient from '../text-gradient';
-import Particles from '../ui/particles';
-
-const IconCloud = dynamic(() => import('@/components/ui/icon-cloud'), {
-  ssr: false,
-  loading: () => (
-    <div className="relative animate-pulse">
-      <div className="absolute inset-0 glass rounded-2xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20" />
-      </div>
-    </div>
-  ),
-});
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { TypingCodeBlock } from '@/components/typing-code-block';
+import avatarImage from '@/public/images/avatar.png';
 
 const texts = [
-  'Frontend Developer',
-  'UI/UX Enthusiast',
-  'React Specialist',
-  'Performance Optimizer',
-  'Problem Solver',
-  'Lifelong Learner',
-  'Team Player',
+  'Frontend Developer ✨',
+  'UI/UX Enthusiast 🎨',
+  'React Specialist ⚛️',
+  'Performance Optimizer 🚀',
+  'Problem Solver 🧩',
+  'Lifelong Learner 📚',
+  'Team Player 🤝',
 ];
+
+const codeString = `// Welcome to my Portfolio! 🚀
+import { NextJS, NodeJS, React, TypeScript } from '@/tech-stack';
+import { TailwindCSS } from '@/ui-tools';
+
+function createAmazingWebsite() {
+  const skills = {
+    webDev: [React, NextJS, NodeJS, TypeScript, TailwindCSS],
+    aiTools: ["Cursor", "Claude", "GitHub Copilot"]
+  };
+
+  return {
+    message: "Let's work together!",
+    services: ["Web Apps", "Problem Solving", "Team Collaboration", "Fast Learning"],
+    contact: "etchegaray.matthias@gmail.com"
+  };
+};`;
 
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -52,8 +56,8 @@ function useIsDesktop() {
 const getContentVariants = (isDesktop: boolean) => ({
   hidden: {
     opacity: 0,
-    x: isDesktop ? 20 : 0,
-    y: isDesktop ? 0 : -20,
+    x: isDesktop ? -20 : 0,
+    y: isDesktop ? 0 : 20,
   },
   visible: {
     opacity: 1,
@@ -62,115 +66,187 @@ const getContentVariants = (isDesktop: boolean) => ({
   },
 });
 
-const getIconCloudVariants = (isDesktop: boolean) => ({
+const getImageVariants = (isDesktop: boolean) => ({
   hidden: {
     opacity: 0,
+    scale: 0.9,
     x: isDesktop ? 20 : 0,
-    y: isDesktop ? 0 : -20,
+    y: isDesktop ? 0 : 20,
   },
   visible: {
     opacity: 1,
+    scale: 1,
     x: 0,
     y: 0,
   },
-});
-
-const IconCloudSection = memo(function IconCloudSection({
-  isInView,
-  isDesktop,
-}: {
-  isInView: boolean;
-  isDesktop: boolean;
-}) {
-  return (
-    <div
-      className="relative w-full max-w-[300px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] mx-auto"
-      aria-hidden
-    >
-      <motion.div
-        variants={getIconCloudVariants(isDesktop)}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ duration: 0.3 }}
-      >
-        {isInView && <IconCloud iconSlugs={STACK_SLUGS} />}
-      </motion.div>
-    </div>
-  );
 });
 
 export default function Hero() {
   const ref = useRef(null);
-  const buttonRef = useRef(null);
-  const isInView = useInView(ref, { margin: '-100px' });
-  const { buttonProps } = useButton(
+  const contactButtonRef = useRef(null);
+  const projectsButtonRef = useRef(null);
+
+  const { buttonProps: contactButtonProps } = useButton(
     {
       onPress: () => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          // Get the scroll container
+          const scrollContainer = document.getElementById('scroll-container');
+          if (scrollContainer) {
+            // Get the position of the contact section relative to the scroll container
+            const containerRect = scrollContainer.getBoundingClientRect();
+            const sectionRect = contactSection.getBoundingClientRect();
+            const relativeTop = sectionRect.top - containerRect.top + scrollContainer.scrollTop;
+
+            // Scroll to the contact section
+            scrollContainer.scrollTo({
+              top: relativeTop,
+              behavior: 'smooth',
+            });
+          }
+        }
       },
       'aria-label': 'Get in touch - Contact section',
     },
-    buttonRef
+    contactButtonRef
   );
+
+  const { buttonProps: projectsButtonProps } = useButton(
+    {
+      onPress: () => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          // Get the scroll container
+          const scrollContainer = document.getElementById('scroll-container');
+          if (scrollContainer) {
+            // Get the position of the projects section relative to the scroll container
+            const containerRect = scrollContainer.getBoundingClientRect();
+            const sectionRect = projectsSection.getBoundingClientRect();
+            const relativeTop = sectionRect.top - containerRect.top + scrollContainer.scrollTop;
+
+            // Scroll to the projects section
+            scrollContainer.scrollTo({
+              top: relativeTop,
+              behavior: 'smooth',
+            });
+          }
+        }
+      },
+      'aria-label': 'View projects section',
+    },
+    projectsButtonRef
+  );
+
   const isDesktop = useIsDesktop();
 
   return (
     <section
-      id="home"
+      id="hero"
       ref={ref}
       aria-labelledby="hero-title"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20 lg:py-0"
+      className="relative min-h-full p-4 md:p-10 flex items-center justify-center overflow-hidden py-20 lg:py-0 bg-background"
     >
-      <div className="absolute inset-0" aria-hidden>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isInView ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-          className="h-full"
-          style={{
-            height: '100%',
-          }}
-        >
-          <Particles color={getCssVar('--primary')} className="h-full" />
-        </motion.div>
-      </div>
-
       <div className="relative w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col items-center gap-6">
+            {/* Avatar */}
+            <motion.div
+              variants={getImageVariants(isDesktop)}
+              initial="visible"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <div className="relative w-[120px] h-[120px] md:w-[150px] md:h-[150px] lg:w-[180px] lg:h-[180px]">
+                <div className="absolute inset-0 bg-primary/20 rounded-full overflow-hidden border-4 border-primary">
+                  <Image
+                    src={avatarImage}
+                    alt={`${FIRST_NAME}'s portrait`}
+                    width={180}
+                    height={180}
+                    className="object-cover rounded-full w-full h-full"
+                    priority
+                    sizes="(max-width: 768px) 120px, (max-width: 1200px) 150px, 180px"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text Content */}
+            <motion.div
+              variants={getContentVariants(isDesktop)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="text-center flex flex-col gap-5 w-full"
+            >
+              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello 👋, I&apos;m</h2>
+
+              <h1
+                id="hero-title"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-foreground"
+                style={{ letterSpacing: '-2px' }}
+              >
+                {FIRST_NAME}
+              </h1>
+
+              <div className="flex items-center justify-center">
+                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-muted-foreground">
+                  I&apos;m a <TypingAnimation texts={texts} />
+                </p>
+              </div>
+
+              <div className="flex gap-4 mt-4 justify-center">
+                <button
+                  {...contactButtonProps}
+                  ref={contactButtonRef}
+                  className="px-6 md:px-8 border py-2.5 md:py-3 relative z-10 block bg-muted rounded-full text-sm md:text-base lg:text-lg xl:text-xl hover:bg-background/80 transition-colors"
+                >
+                  Get in Touch 📬
+                </button>
+                <button
+                  {...projectsButtonProps}
+                  ref={projectsButtonRef}
+                  className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-primary text-white text-sm md:text-base lg:text-lg xl:text-xl hover:opacity-90 transition-opacity"
+                >
+                  View Projects 🚀
+                </button>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Code Block - Right Side */}
           <motion.div
-            variants={getContentVariants(isDesktop)}
+            variants={getImageVariants(isDesktop)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.2 }}
-            className="text-center items-center lg:items-start lg:text-left flex flex-col gap-4"
+            transition={{ duration: 0.3 }}
+            className="w-full max-w-[800px] justify-self-end"
           >
-            <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello, I&apos;m</h2>
+            <div className="rounded-lg overflow-hidden shadow-xl">
+              {/* Window Controls */}
+              <div className="flex items-center gap-2 p-3 bg-[#1e1e2e]">
+                <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+              </div>
 
-            <h1
-              id="hero-title"
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-              style={{ letterSpacing: '-2px' }}
-            >
-              <TextGradient>{FIRST_NAME}</TextGradient>
-            </h1>
-
-            <p className="text-xl md:text-1xl lg:text-2xl xl:text-3xl text-[hsl(var(--text-primary))]">
-              I&apos;m a <TypingAnimation texts={texts} />
-            </p>
-
-            <div className="rgb-border inline-block mt-4 self-center lg:self-start">
-              <button
-                {...buttonProps}
-                ref={buttonRef}
-                className="px-6 md:px-8 py-2.5 md:py-3 relative z-10 block glass interactive rounded-full text-sm md:text-base lg:text-lg xl:text-xl"
-              >
-                Get in Touch
-              </button>
+              {/* Code Content */}
+              <div className="bg-muted">
+                <TypingCodeBlock
+                  language="typescript"
+                  filename="Skills"
+                  code={codeString}
+                  typingSpeed={60}
+                  startDelay={100}
+                />
+              </div>
             </div>
           </motion.div>
-
-          <IconCloudSection isInView={isInView} isDesktop={isDesktop} />
         </div>
       </div>
     </section>
