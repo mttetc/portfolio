@@ -22,16 +22,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       </div>
       <ScrollProgress />
       <TooltipProvider delayDuration={0}>
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-dvh">
           <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
             <PortfolioSidebar />
-            <main className="flex-1 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl md:rounded-br-none md:rounded-bl-none md:rounded-tr-none rounded-tl-2xl overflow-hidden border">
-              <div
-                id="scroll-container"
-                className="bg-background w-full h-full overflow-y-auto overflow-x-hidden"
-              >
-                {children}
-              </div>
+            <main
+              id="scroll-container"
+              className="bg-background w-full h-full overflow-y-auto overflow-x-hidden flex-1 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl md:rounded-br-none md:rounded-bl-none md:rounded-tr-none rounded-tl-2xl overflow-hidden border"
+            >
+              {children}
             </main>
           </div>
           <Footer />

@@ -104,7 +104,7 @@ export const TechFilters = () => {
               <DrawerHeader>
                 <DrawerTitle>Filter Projects</DrawerTitle>
               </DrawerHeader>
-              <div className="p-4 overflow-y-auto max-h-[60vh]">
+              <div className="p-4 overflow-y-auto max-h-[60dvh]">
                 <FilterButtons
                   activeFilters={activeFilters}
                   onAllClick={handleAllClick}

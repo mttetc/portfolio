@@ -54,7 +54,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
         alt={`Screenshot of ${project.name}`}
         fill
         className="object-cover z-0"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 50dvw, 33dvw"
         loading={project.name === 'Quaestio' ? 'eager' : 'lazy'}
         placeholder={project.name === 'Quaestio' ? undefined : 'blur'}
       />
