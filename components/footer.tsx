@@ -1,6 +1,5 @@
 'use client';
 
-import { FULL_NAME } from '@/constants/names';
 import SparklesText from './ui/sparkles-text';
 
 export default function Footer() {
@@ -17,7 +16,11 @@ export default function Footer() {
               className="hover:text-white transition-colors"
               aria-label="Visit Next.js website"
             >
-              Next.js
+              <SparklesText
+                sparklesCount={4}
+                className="text-sm font-light inline"
+                text="Next.js"
+              />
               <span className="sr-only">(opens in new tab)</span>
             </a>{' '}
             and{' '}
@@ -28,18 +31,14 @@ export default function Footer() {
               className="hover:text-white transition-colors"
               aria-label="Visit Tailwind CSS website"
             >
-              Tailwind CSS
+              <SparklesText
+                sparklesCount={2}
+                className="text-sm font-light inline"
+                text="Tailwind CSS"
+              />
               <span className="sr-only">(opens in new tab)</span>
             </a>
           </p>
-          <div className="hidden md:flex items-center gap-1">
-            by
-            <SparklesText
-              sparklesCount={3}
-              className="text-sm font-light inline"
-              text={FULL_NAME}
-            />
-          </div>
         </div>
       </div>
     </footer>

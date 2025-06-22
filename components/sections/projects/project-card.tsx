@@ -45,7 +45,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
   return (
     <motion.article
       aria-labelledby={`project-${project.name}`}
-      className="relative h-[300px] sm:h-[350px] md:h-[400px] group overflow-hidden rounded-xl"
+      className="relative h-[300px] sm:h-[350px] md:h-[400px] group overflow-hidden rounded-xl border"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.15 }}
     >
@@ -84,7 +84,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
           )}
         </div>
 
-        <div className="mt-auto">
+        <div className="mt-auto overflow-y-auto">
           <h3
             id={`project-${project.name}`}
             className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4"

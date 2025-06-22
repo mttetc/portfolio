@@ -36,6 +36,10 @@ const images = {
   quaestio: placeholder,
   videobookmark: placeholder,
   taskFlow: placeholder,
+  tabs: placeholder,
+  livethread: placeholder,
+  cryptosentry: placeholder,
+  nestjsAuthApi: placeholder,
 } as const;
 
 export type ProjectImage = keyof typeof images;

@@ -39,11 +39,11 @@ export const ProjectsGrid = () => {
   );
 
   return (
-    <div className="space-y-8 overflow-hidden">
-      <div role="grid" aria-label="Projects grid" className="overflow-hidden">
+    <div className="space-y-8">
+      <div role="grid" aria-label="Projects grid">
         <motion.div
           role="row"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 overflow-hidden"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
           layout
         >
           <AnimatePresence mode="popLayout">

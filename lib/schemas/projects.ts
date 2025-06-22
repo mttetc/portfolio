@@ -2,8 +2,13 @@ import { z } from 'zod';
 import { StaticImageData } from 'next/image';
 
 export const TechStackEnum = z.enum([
+  'Angular',
+  'Primeng',
+  'Redis',
+  'Neon',
   'React',
   'Next.js',
+  'Nest.js',
   'Express.js',
   'TypeScript',
   'JavaScript',
@@ -15,6 +20,7 @@ export const TechStackEnum = z.enum([
   'SASS',
   'Styled Components',
   'Material UI',
+  'Supabase',
   'Chakra UI',
   'Shadcn',
   'Framer Motion',
@@ -25,6 +31,8 @@ export const TechStackEnum = z.enum([
   'PostgreSQL',
   'MySQL',
   'Jest',
+  'Vitest',
+  'Storybook',
   'Cypress',
   'Docker',
   'AWS Lambda',
@@ -32,8 +40,13 @@ export const TechStackEnum = z.enum([
   'JQuery',
   'Twig',
   'Wordpress',
-  'AI',
+  'Langchain',
   'Prisma',
+  'JWT',
+  'Radix UI',
+  'Upstash',
+  'Zod',
+  'Drizzle',
 ]);
 
 export const ProjectSchema = z.object({

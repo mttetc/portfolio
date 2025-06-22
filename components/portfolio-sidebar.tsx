@@ -12,19 +12,19 @@ const sectionLinks = [
   {
     label: 'Hero',
     href: '#hero',
-    icon: <FiHome className="h-5 w-5 flex-shrink-0 stroke-[2.5px]" />,
+    icon: <FiHome className="h-5 w-5 flex-shrink-0 stroke-[1px]" />,
     id: 'hero',
   },
   {
     label: 'Projects',
     href: '#projects',
-    icon: <FiBriefcase className="h-5 w-5 flex-shrink-0 stroke-[2.5px]" />,
+    icon: <FiBriefcase className="h-5 w-5 flex-shrink-0 stroke-[1px]" />,
     id: 'projects',
   },
   {
     label: 'Contact',
     href: '#contact',
-    icon: <FiMail className="h-5 w-5 flex-shrink-0 stroke-[2.5px]" />,
+    icon: <FiMail className="h-5 w-5 flex-shrink-0 stroke-[1px]" />,
     id: 'contact',
   },
 ];
@@ -33,12 +33,12 @@ const socialLinks = [
   {
     label: 'GitHub',
     href: `https://github.com/${NICKNAME}`,
-    icon: <FiGithub className=" h-5 w-5 flex-shrink-0 stroke-[2.5px]" />,
+    icon: <FiGithub className=" h-5 w-5 flex-shrink-0 stroke-[1px]" />,
   },
   {
     label: 'LinkedIn',
     href: `https://linkedin.com/in/${NICKNAME}`,
-    icon: <FiLinkedin className="h-5 w-5 flex-shrink-0 stroke-[2.5px]" />,
+    icon: <FiLinkedin className="h-5 w-5 flex-shrink-0 stroke-[1px]" />,
   },
 ];
 
@@ -109,6 +109,7 @@ export function PortfolioSidebar() {
       scrollContainer.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

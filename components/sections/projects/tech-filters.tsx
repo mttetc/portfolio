@@ -62,7 +62,7 @@ const FilterButtons = memo(function FilterButtons({
   onTechClick: (name: string) => () => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-2">
       <AnimatedAllButton isActive={activeFilters.includes('All')} onClick={onAllClick} />
       {TECHNOLOGIES.map(tech => (
         <AnimatedTechButton

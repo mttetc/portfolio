@@ -25,7 +25,7 @@ import { TailwindCSS } from '@/ui-tools';
 
 function createAmazingWebsite() {
   const skills = {
-    webDev: [React, NextJS, NodeJS, TypeScript, TailwindCSS],
+    webDev: [React, NextJS, NodeJS, NestJS, ExpressJS, TypeScript, TailwindCSS],
     aiTools: ["Cursor", "Claude", "GitHub Copilot"]
   };
 
