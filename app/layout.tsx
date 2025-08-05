@@ -9,6 +9,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { GeistSans } from 'geist/font/sans';
 import { Metadata } from 'next';
 import './globals.css';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Portfolio | Matthias Etchegaray',
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.variable}>
-      <body className="bg-muted grid grid-rows-[auto_1fr] max-h-dvh overflow-hidden">
+    <html lang="en" className={cn(GeistSans.variable, 'h-full')}>
+      <body className="bg-muted grid grid-rows-[auto_1fr] h-full">
         <TooltipProvider delayDuration={0}>
           <CustomCursorContainer />
           <ScrollToTop />
