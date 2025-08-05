@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="py-2">
       <div className="max-w-7xl mx-auto">
         <div className="text-muted-foreground text-sm flex flex-col md:flex-row items-center justify-center gap-1 text-center">
-          <p>
+          <div>
             Built with <span className="text-red-400">❤</span> using{' '}
             <a
               href="https://nextjs.org"
@@ -38,7 +38,7 @@ export default function Footer() {
               />
               <span className="sr-only">(opens in new tab)</span>
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </footer>

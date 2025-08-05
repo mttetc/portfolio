@@ -168,7 +168,6 @@ html {
 }
 body {
   color: hsl(var(--text-primary));
-  min-height: 100dvh;
   max-width: 100dvw;
 }
 

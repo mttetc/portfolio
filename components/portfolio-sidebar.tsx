@@ -115,7 +115,7 @@ export function PortfolioSidebar() {
   return (
     <Sidebar animate>
       <SidebarBody className="top-0 justify-between gap-10 h-full border border-t-0 border-r-0 border-l-0">
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col">
           <Logo />
           <div className="mt-8 flex flex-col gap-2">
             {sectionLinks.map((link, idx) => (
