@@ -179,13 +179,6 @@ body {
 
 /* Mobile viewport fixes */
 @media screen and (max-width: 768px) {
-  html,
-  body {
-    height: 100vh;
-    height: 100dvh;
-    overflow-x: hidden;
-  }
-
   /* Prevent layout shift when keyboard appears */
   input:focus,
   textarea:focus {

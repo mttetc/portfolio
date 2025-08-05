@@ -1,5 +1,6 @@
 import { CustomCursorContainer } from '@/components/custom-cursor-container';
 import Footer from '@/components/footer';
+import { MobileViewportHandler } from '@/components/mobile-viewport-handler';
 import { PortfolioSidebar } from '@/components/portfolio-sidebar';
 import { ScrollProgress } from '@/components/scroll-progress';
 import ScrollToTop from '@/components/scroll-to-top';
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn(GeistSans.variable, 'h-full')}>
       <body className="bg-muted grid grid-rows-[auto_1fr] h-full overflow-hidden">
         <TooltipProvider delayDuration={0}>
+          <MobileViewportHandler />
           <CustomCursorContainer />
           <ScrollToTop />
           <div className="hidden md:block">
@@ -38,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <PortfolioSidebar />
             <main
               id="scroll-container"
-              className="bg-background overflow-y-auto overflow-x-hidden w-full h-full md:max-h-dvh rounded-tr-2xl rounded-br-2xl rounded-bl-2xl md:rounded-br-none md:rounded-bl-none md:rounded-tr-none rounded-tl-2xl border"
+              className="bg-background overflow-y-auto overflow-x-hidden w-full h-full max-h-dvh rounded-tr-2xl rounded-br-2xl rounded-bl-2xl md:rounded-br-none md:rounded-bl-none md:rounded-tr-none rounded-tl-2xl border"
             >
               {children}
             </main>
