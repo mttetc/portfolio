@@ -2,12 +2,12 @@
 
 import { useLink } from '@react-aria/link';
 import { useRef } from 'react';
-import { SectionTitle } from '@/components/section-title';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { EMAIL, NICKNAME } from '@/constants/names';
-import * as motion from 'motion/react-client';
+import { motion } from 'motion/react';
 import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
-import { ContactForm } from '../contact-form';
+import { ContactForm } from '../../contact-form';
+import { useInView } from 'motion/react';
 
 const socialLinks = [
   {
@@ -33,10 +33,12 @@ const socialLinks = [
   },
 ];
 
-export default function Contact() {
+export function ContactClient() {
   const githubRef = useRef<HTMLAnchorElement>(null);
   const linkedinRef = useRef<HTMLAnchorElement>(null);
   const emailRef = useRef<HTMLAnchorElement>(null);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true });
 
   const { linkProps: githubProps } = useLink(
     {
@@ -68,11 +70,9 @@ export default function Contact() {
   const refs = [githubRef, linkedinRef, emailRef];
 
   return (
-    <section id="contact" className="py-20 p-4 md:p-10 min-h-full">
-      <div className="max-w-7xl mx-auto">
-        <SectionTitle title="Get in Touch" icon="contact" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+    <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+      {isInView && (
+        <>
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -127,8 +127,8 @@ export default function Contact() {
             </div>
           </div>
           <ContactForm />
-        </div>
-      </div>
-    </section>
+        </>
+      )}
+    </div>
   );
 }
