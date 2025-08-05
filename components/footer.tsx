@@ -1,5 +1,3 @@
-'use client';
-
 import SparklesText from './ui/sparkles-text';
 
 export default function Footer() {
