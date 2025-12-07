@@ -41,9 +41,13 @@ export const TypingCodeBlock: React.FC<TypingCodeBlockProps> = ({
 
   useEffect(() => {
     // Reset if code changes
-    setDisplayedCode('');
-    setCurrentIndex(0);
-    setIsComplete(false);
+    const resetId = setTimeout(() => {
+      setDisplayedCode('');
+      setCurrentIndex(0);
+      setIsComplete(false);
+    }, 0);
+
+    return () => clearTimeout(resetId);
   }, [code]);
 
   useEffect(() => {
@@ -74,7 +78,8 @@ export const TypingCodeBlock: React.FC<TypingCodeBlockProps> = ({
 
       return () => clearTimeout(timeout);
     } else if (!isComplete) {
-      setIsComplete(true);
+      const completionId = setTimeout(() => setIsComplete(true), 0);
+      return () => clearTimeout(completionId);
     }
   }, [code, currentIndex, typingSpeed, startDelay, isComplete, charsPerBatch]);
 

@@ -26,8 +26,10 @@ export default function TypingAnimation({
     if (!isDeleting && text === currentWord) {
       timeout = setTimeout(() => setIsDeleting(true), pauseTime);
     } else if (isDeleting && text === '') {
-      setIsDeleting(false);
-      setWordIndex(prev => (prev + 1) % texts.length);
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setWordIndex(prev => (prev + 1) % texts.length);
+      }, 0);
     } else {
       const target = isDeleting ? text.slice(0, -1) : currentWord.slice(0, text.length + 1);
       timeout = setTimeout(() => setText(target), isDeleting ? deletingSpeed : typingSpeed);

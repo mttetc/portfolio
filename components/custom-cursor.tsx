@@ -14,14 +14,14 @@ export function CustomCursor() {
   const mouseY = useRef(0);
   const isMouseDown = useRef(false);
 
-  const animateScale = useCallback(() => {
+  const animateScale = useCallback(function animate() {
     if (!cursor.current) return;
 
     currentScale.current = lerp(currentScale.current, targetScale.current, 0.15);
     cursor.current.style.transform = `translate3d(${mouseX.current}px, ${mouseY.current}px, 0) translate(-50%, -50%) scale(${currentScale.current})`;
 
     if (Math.abs(currentScale.current - targetScale.current) > 0.001) {
-      requestAnimationFrame(animateScale);
+      requestAnimationFrame(animate);
     }
   }, []);
 

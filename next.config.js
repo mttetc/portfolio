@@ -7,14 +7,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  modularizeImports: {
-    'react-icons/fi': {
-      transform: 'react-icons/fi/{{member}}',
-    },
-    'react-icons/si': {
-      transform: 'react-icons/si/{{member}}',
-    },
-  },
 };
 
 module.exports = nextConfig;

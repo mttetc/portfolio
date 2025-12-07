@@ -2,36 +2,32 @@
 
 import { motion } from 'motion/react';
 import { FiArrowUp } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollContainer, setScrollContainer] = useState<HTMLElement | null>(null);
-
-  // Find the scroll container after component mounts
-  useEffect(() => {
-    const container = document.getElementById('scroll-container');
-    if (container) {
-      setScrollContainer(container);
-    }
-  }, []);
+  const scrollContainerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (!scrollContainer) return;
+    scrollContainerRef.current = document.getElementById('scroll-container');
+    const node = scrollContainerRef.current;
+    if (!node) return;
 
     const toggleVisibility = () => {
-      setIsVisible(scrollContainer.scrollTop > 500);
+      setIsVisible(node.scrollTop > 500);
     };
 
-    scrollContainer.addEventListener('scroll', toggleVisibility);
-    return () => scrollContainer.removeEventListener('scroll', toggleVisibility);
-  }, [scrollContainer]);
+    toggleVisibility();
+    node.addEventListener('scroll', toggleVisibility);
+    return () => node.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
-    if (!scrollContainer) return;
+    const node = scrollContainerRef.current;
+    if (!node) return;
 
     // Use scrollTo instead of scrollIntoView to have better control
-    scrollContainer.scrollTo({
+    node.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
