@@ -18,8 +18,8 @@ function SubmitButton() {
       whileTap={{ scale: 0.98 }}
       className="w-full p-4 rounded-xl font-medium relative overflow-hidden group disabled:opacity-70 text-white"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] transition-transform group-hover:scale-105" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--primary))] opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-linear-to-r from-primary to-secondary transition-transform group-hover:scale-105" />
+      <div className="absolute inset-0 bg-linear-to-r from-secondary to-primary opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="relative flex items-center justify-center gap-2">
         <span>{pending ? 'Sending...' : 'Send Message'}</span>
         <FiSend className={`${pending ? '' : 'group-hover:translate-x-1'} transition-transform`} />
@@ -68,10 +68,10 @@ export function ContactForm() {
               name="name"
               placeholder="Name"
               defaultValue={state.values?.name}
-              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all text-base ${
+              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
                 state.fieldErrors?.name
                   ? 'ring-2 ring-red-500 focus:ring-red-500'
-                  : 'focus:ring-[hsl(var(--primary))]'
+                  : 'focus:ring-primary'
               }`}
             />
             {state.fieldErrors?.name && (
@@ -84,10 +84,10 @@ export function ContactForm() {
               name="email"
               placeholder="Email"
               defaultValue={state.values?.email}
-              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all text-base ${
+              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
                 state.fieldErrors?.email
                   ? 'ring-2 ring-red-500 focus:ring-red-500'
-                  : 'focus:ring-[hsl(var(--primary))]'
+                  : 'focus:ring-primary'
               }`}
             />
             {state.fieldErrors?.email && (
@@ -101,10 +101,10 @@ export function ContactForm() {
             name="subject"
             placeholder="Subject"
             defaultValue={state.values?.subject}
-            className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-none focus:ring-2 transition-all text-base ${
+            className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
               state.fieldErrors?.subject
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
-                : 'focus:ring-[hsl(var(--primary))]'
+                : 'focus:ring-primary'
             }`}
           />
           {state.fieldErrors?.subject && (
@@ -117,10 +117,10 @@ export function ContactForm() {
             placeholder="Message"
             rows={6}
             defaultValue={state.values?.message}
-            className={`bg-muted border w-full p-4 placeholder:text-muted-foreground rounded-xl focus:outline-none focus:ring-2 transition-all resize-none text-base ${
+            className={`bg-muted border w-full p-4 placeholder:text-muted-foreground rounded-xl focus:outline-hidden focus:ring-2 transition-all resize-none text-base ${
               state.fieldErrors?.message
                 ? 'ring-2 ring-red-500 focus:ring-red-500'
-                : 'focus:ring-[hsl(var(--primary))]'
+                : 'focus:ring-primary'
             }`}
           />
           {state.fieldErrors?.message && (

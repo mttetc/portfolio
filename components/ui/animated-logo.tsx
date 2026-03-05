@@ -35,7 +35,7 @@ export const AnimatedLogo = memo(() => {
       className="font-normal flex space-x-3 items-center text-sm py-1 relative z-20"
       as="image"
     >
-      <div className="relative w-8 h-8 flex-shrink-0">
+      <div className="relative w-8 h-8 shrink-0">
         <div className="absolute inset-0 rounded-full bg-primary/30 blur-[4px]" />
         <Avatar className="relative h-full w-full">
           <AvatarImage src="/images/avatar.png" alt={`${FIRST_NAME}'s portrait`} />
@@ -45,8 +45,8 @@ export const AnimatedLogo = memo(() => {
       <motion.span
         initial={{ opacity: 0, width: 0 }}
         animate={{
-          opacity: animate ? (open ? 1 : 0) : 0,
-          width: animate ? (open ? 'auto' : 0) : 0,
+          opacity: animate && open ? 1 : 0,
+          width: animate && open ? 'auto' : 0,
         }}
         transition={{
           opacity: { duration: 0.2 },

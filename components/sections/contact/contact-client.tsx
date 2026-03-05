@@ -4,31 +4,30 @@ import { useLink } from '@react-aria/link';
 import { useRef } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { EMAIL, NICKNAME } from '@/constants/names';
-import { motion } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { ContactForm } from '../../contact-form';
-import { useInView } from 'motion/react';
 
 const socialLinks = [
   {
     name: 'GitHub',
     icon: FiGithub,
     link: `https://github.com/${NICKNAME}`,
-    color: 'hsl(var(--foreground))',
+    color: 'var(--foreground)',
     hoverText: 'Check my repos',
   },
   {
     name: 'LinkedIn',
     icon: FiLinkedin,
     link: `https://linkedin.com/in/${NICKNAME}`,
-    color: 'hsl(var(--foreground))',
+    color: 'var(--foreground)',
     hoverText: 'Connect with me',
   },
   {
     name: 'Email',
     icon: FiMail,
     link: `mailto:${EMAIL}`,
-    color: 'hsl(var(--foreground))',
+    color: 'var(--foreground)',
     hoverText: 'Send me an email',
   },
 ];
@@ -91,7 +90,7 @@ export function ContactClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="flex items-center gap-3 text-[hsl(var(--text-secondary))]"
+              className="flex items-center gap-3 text-text-secondary"
             >
               <FiMapPin className="shrink-0" />
               <span>France</span>

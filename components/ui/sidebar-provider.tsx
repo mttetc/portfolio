@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 interface SidebarContextProps {
   open: boolean;
@@ -34,9 +34,7 @@ export const SidebarProvider = ({
   const open = openProp !== undefined ? openProp : openState;
   const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
 
-  return (
-    <SidebarContext.Provider value={{ open, setOpen, animate: animate }}>
-      {children}
-    </SidebarContext.Provider>
-  );
+  const value = useMemo(() => ({ open, setOpen, animate }), [open, setOpen, animate]);
+
+  return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 };

@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn(GeistSans.variable, 'h-full')}>
-      <body className="bg-muted grid grid-rows-[auto_1fr] h-full overflow-hidden">
+      <body className="bg-muted grid grid-rows-[auto_1fr] h-full">
         <TooltipProvider delayDuration={0}>
           <MobileViewportHandler />
           <CustomCursorContainer />
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           <ScrollProgress />
 
-          <div className="flex flex-col md:flex-row overflow-hidden">
+          <div className="flex flex-col md:flex-row min-h-0">
             <PortfolioSidebar />
             <main
               id="scroll-container"

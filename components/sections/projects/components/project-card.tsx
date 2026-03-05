@@ -1,5 +1,7 @@
-import { PROJECTS } from '@/constants/projects';
-import { TECHNOLOGIES } from '@/constants/technologies';
+'use client';
+
+import { getTechnology, Technology } from '@/constants/technologies';
+import { Project } from '@/lib/schemas/projects';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { memo, useMemo, useRef } from 'react';
@@ -9,18 +11,16 @@ import { TechBadge } from './tech-badge';
 import { useButton } from '@react-aria/button';
 
 interface ProjectCardProps {
-  project: (typeof PROJECTS)[0];
+  project: Project;
 }
 
 export const ProjectCard = memo(({ project }: ProjectCardProps) => {
-  const techMap = useMemo(() => new Map(TECHNOLOGIES.map(tech => [tech.name, tech])), []);
   const techBadges = useMemo(
     () =>
       project.stack
-        .map(techName => techMap.get(techName))
-        .filter((tech): tech is (typeof TECHNOLOGIES)[0] => !!tech)
+        .map(getTechnology)
         .map(tech => <TechBadge key={tech.name} tech={tech} />),
-    [project.stack, techMap]
+    [project.stack]
   );
 
   const githubRef = useRef(null);
@@ -64,6 +64,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
         <div className="flex justify-end gap-4 mb-auto">
           {project.github && (
             <button
+              type="button"
               {...githubProps}
               ref={githubRef}
               className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"
@@ -74,6 +75,7 @@ export const ProjectCard = memo(({ project }: ProjectCardProps) => {
           )}
           {project.url && (
             <button
+              type="button"
               {...liveProps}
               ref={liveRef}
               className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"

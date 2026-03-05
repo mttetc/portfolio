@@ -1,4 +1,6 @@
-import * as motion from 'motion/react-client';
+'use client';
+
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { FIRST_NAME } from '@/constants/names';
 import avatarImage from '@/public/images/avatar.png';

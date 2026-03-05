@@ -1,7 +1,7 @@
 'use client';
 
 import { useButton } from '@react-aria/button';
-import * as motion from 'motion/react-client';
+import { motion } from 'motion/react';
 import { useRef } from 'react';
 
 const getContentVariants = () => ({
@@ -83,6 +83,7 @@ export function HeroInteractive() {
       className="flex gap-4 mt-4 justify-center"
     >
       <button
+        type="button"
         {...contactButtonProps}
         ref={contactButtonRef}
         className="px-6 md:px-8 border py-2.5 md:py-3 relative z-10 block bg-muted rounded-full text-sm md:text-base lg:text-lg xl:text-xl hover:bg-background/80 transition-colors"
@@ -90,6 +91,7 @@ export function HeroInteractive() {
         Get in Touch 📬
       </button>
       <button
+        type="button"
         {...projectsButtonProps}
         ref={projectsButtonRef}
         className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-primary text-white text-sm md:text-base lg:text-lg xl:text-xl hover:opacity-90 transition-opacity"

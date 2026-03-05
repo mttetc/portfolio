@@ -1,7 +1,7 @@
-import { TECHNOLOGIES } from '@/constants/technologies';
+import { Technology } from '@/constants/technologies';
 
 interface TechBadgeProps {
-  tech: (typeof TECHNOLOGIES)[0];
+  tech: Technology;
 }
 
 export const TechBadge = ({ tech }: TechBadgeProps) => {

@@ -9,6 +9,7 @@ import alpinecars from '@/app/images/alpinecars.jpg';
 import bluesystems from '@/app/images/bluesystems.jpg';
 import ouestfrance from '@/app/images/ouestfrance.jpg';
 import pagesjaunes from '@/app/images/pagesjaunes.jpg';
+import agentreplay from '@/app/images/agentreplay.png';
 
 // Gradient placeholder image
 const placeholderBase64 =
@@ -22,6 +23,7 @@ const placeholder = {
 };
 
 const images = {
+  agentreplay,
   cryptoguessr,
   polygons,
   obat,
@@ -43,4 +45,6 @@ const images = {
 } as const;
 
 export type ProjectImage = keyof typeof images;
+export const hasProjectImage = (name: string): name is ProjectImage => name in images;
 export const getProjectImage = (name: ProjectImage) => images[name];
+export { placeholder };

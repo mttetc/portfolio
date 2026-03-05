@@ -1,8 +1,10 @@
-import { TECHNOLOGIES } from '@/constants/technologies';
+'use client';
+
+import { getTechnology, Technology } from '@/constants/technologies';
 import { AllButton } from './all-button';
 import { TechButton } from './tech-button';
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
-import { useCallback, memo } from 'react';
+import { useCallback, useMemo, memo } from 'react';
 import { FiFilter } from 'react-icons/fi';
 import {
   Drawer,
@@ -37,7 +39,7 @@ const AnimatedTechButton = memo(function AnimatedTechButton({
   isActive,
   onToggle,
 }: {
-  tech: (typeof TECHNOLOGIES)[0];
+  tech: Technology;
   isActive: boolean;
   onToggle: () => void;
 }) {
@@ -53,10 +55,12 @@ const AnimatedTechButton = memo(function AnimatedTechButton({
 });
 
 const FilterButtons = memo(function FilterButtons({
+  technologies,
   activeFilters,
   onAllClick,
   onTechClick,
 }: {
+  technologies: Technology[];
   activeFilters: string[];
   onAllClick: () => void;
   onTechClick: (name: string) => () => void;
@@ -64,7 +68,7 @@ const FilterButtons = memo(function FilterButtons({
   return (
     <div className="flex flex-wrap gap-2">
       <AnimatedAllButton isActive={activeFilters.includes('All')} onClick={onAllClick} />
-      {TECHNOLOGIES.map(tech => (
+      {technologies.map(tech => (
         <AnimatedTechButton
           key={tech.name}
           tech={tech}
@@ -80,6 +84,14 @@ export const TechFilters = () => {
   const isDrawerVisible = isMobile || isTablet;
   const activeFilters = useProjectsStore(state => state.activeFilters);
   const toggleFilter = useProjectsStore(state => state.toggleFilter);
+  const projects = useProjectsStore(state => state.projects);
+
+  const technologies = useMemo(() => {
+    const techSet = new Set<string>(projects.flatMap(p => p.stack));
+    return Array.from(techSet)
+      .sort((a, b) => a.localeCompare(b))
+      .map(getTechnology);
+  }, [projects]);
 
   const handleAllClick = useCallback(() => toggleFilter('All'), [toggleFilter]);
   const handleTechClick = useCallback((name: string) => () => toggleFilter(name), [toggleFilter]);
@@ -106,6 +118,7 @@ export const TechFilters = () => {
               </DrawerHeader>
               <div className="p-4 overflow-y-auto max-h-[60dvh]">
                 <FilterButtons
+                  technologies={technologies}
                   activeFilters={activeFilters}
                   onAllClick={handleAllClick}
                   onTechClick={handleTechClick}
@@ -116,6 +129,7 @@ export const TechFilters = () => {
         </Drawer>
       ) : (
         <FilterButtons
+          technologies={technologies}
           activeFilters={activeFilters}
           onAllClick={handleAllClick}
           onTechClick={handleTechClick}

@@ -1,134 +1,155 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@layer base {
-  :root {
-    --background-lighter: 250 31% 20%;
-    --background: 250 31% 13%;
-    --background-darker: 250 31% 8%;
-    --foreground: 0 0% 100%;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-    --card: 250 31% 13%;
-    --card-foreground: 0 0% 100%;
+:root {
+  --background-lighter: hsl(250 31% 20%);
+  --background: hsl(250 31% 13%);
+  --background-darker: hsl(250 31% 8%);
+  --foreground: hsl(0 0% 100%);
 
-    --popover: 250 31% 13%;
-    --popover-foreground: 0 0% 100%;
+  --card: hsl(250 31% 13%);
+  --card-foreground: hsl(0 0% 100%);
 
-    --primary: 236 75% 70%;
-    --primary-foreground: 0 0% 100%;
+  --popover: hsl(250 31% 13%);
+  --popover-foreground: hsl(0 0% 100%);
 
-    --secondary: 210 100% 60%;
-    --secondary-foreground: 0 0% 100%;
+  --primary: hsl(236 75% 70%);
+  --primary-foreground: hsl(0 0% 100%);
 
-    --muted: 250 31% 20%;
-    --muted-foreground: 250 31% 80%;
+  --secondary: hsl(210 100% 60%);
+  --secondary-foreground: hsl(0 0% 100%);
 
-    --accent: 300 100% 60%;
-    --accent-foreground: 0 0% 100%;
+  --muted: hsl(250 31% 20%);
+  --muted-foreground: hsl(250 31% 80%);
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+  --accent: hsl(300 100% 60%);
+  --accent-foreground: hsl(0 0% 100%);
 
-    --border: 250 31% 30%;
-    --input: 270 70% 40%;
-    --ring: 210 70% 50%;
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
 
-    /* Text Colors */
-    --text-primary: 0 0% 100%;
-    --text-secondary: 250 5% 65%;
-    --text-muted: 250 5% 40%;
+  --border: hsl(250 31% 30%);
+  --input: hsl(270 70% 40%);
+  --ring: hsl(210 70% 50%);
 
-    --transition-normal: 0.1s ease-in-out;
+  /* Text Colors */
+  --text-primary: hsl(0 0% 100%);
+  --text-secondary: hsl(250 5% 65%);
+  --text-muted: hsl(250 5% 40%);
+
+  --transition-normal: 0.1s ease-in-out;
+}
+
+:root[data-theme='light'] {
+  --background-lighter: hsl(250 31% 98%);
+  --background: hsl(250 31% 97%);
+  --background-darker: hsl(250 31% 95%);
+  --foreground: hsl(250 31% 9%);
+
+  --card: hsl(250 31% 97%);
+  --card-foreground: hsl(250 31% 9%);
+
+  --popover: hsl(250 31% 97%);
+  --popover-foreground: hsl(250 31% 9%);
+
+  --primary: hsl(236 75% 70%);
+  --primary-foreground: hsl(236 75% 25%);
+
+  --secondary: hsl(210 100% 60%);
+  --secondary-foreground: hsl(0 0% 100%);
+
+  --muted: hsl(250 31% 98%);
+  --muted-foreground: hsl(250 31% 40%);
+
+  --accent: hsl(300 100% 60%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(250 31% 88%);
+  --input: hsl(250 31% 90%);
+  --ring: hsl(210 70% 50%);
+
+  --text-primary: hsl(250 31% 9%);
+  --text-secondary: hsl(250 31% 25%);
+  --text-muted: hsl(250 31% 60%);
+}
+
+@theme inline {
+  --color-background-lighter: var(--background-lighter);
+  --color-background: var(--background);
+  --color-background-darker: var(--background-darker);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+}
+
+* {
+  border-color: var(--border);
+  cursor: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+html {
+  cursor: none;
+}
+
+body {
+  cursor: none;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
   }
+}
 
-  :root[data-theme='light'] {
-    --background-lighter: 250 31% 98%;
-    --background: 250 31% 97%;
-    --background-darker: 250 31% 95%;
-    --foreground: 250 31% 9%;
+::selection {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  color: var(--text-primary);
+}
 
-    --background: 250 31% 97%;
-    --foreground: 250 31% 9%;
-
-    --card: 250 31% 97%;
-    --card-foreground: 250 31% 9%;
-
-    --popover: 250 31% 97%;
-    --popover-foreground: 250 31% 9%;
-
-    --primary: 236 75% 70%;
-    --primary-foreground: 236 75% 25%;
-
-    --secondary: 210 100% 60%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 250 31% 98%;
-    --muted-foreground: 250 31% 40%;
-
-    --accent: 300 100% 60%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 250 31% 88%;
-    --input: 250 31% 90%;
-    --ring: 210 70% 50%;
-
-    --text-primary: 250 31% 9%;
-    --text-secondary: 250 31% 25%;
-    --text-muted: 250 31% 60%;
-  }
-
-  @layer base {
-    * {
-      border-color: hsl(var(--border));
-      cursor: none;
-    }
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 500;
-  }
-
-  html {
-    cursor: none;
-  }
-
-  body {
-    cursor: none;
-  }
-
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  [role='button'] {
-    cursor: none;
-  }
-
-  @media (pointer: coarse) {
-    * {
-      cursor: auto !important;
-    }
-  }
-
-  ::selection {
-    background: hsl(var(--primary) / 0.3);
-    color: hsl(var(--text-primary));
-  }
-
-  ::-moz-selection {
-    background: hsl(var(--primary) / 0.3);
-    color: hsl(var(--text-primary));
-  }
+::-moz-selection {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  color: var(--text-primary);
 }
 
 @property --x {
@@ -163,13 +184,13 @@
 }
 
 html {
-  background: hsl(var(--background));
+  background: var(--background);
   max-width: 100dvw;
   height: 100%;
 }
 
 body {
-  color: hsl(var(--text-primary));
+  color: var(--text-primary);
   max-width: 100dvw;
   height: 100%;
   /* Prevent zoom on input focus on iOS */
@@ -302,92 +323,6 @@ body {
   background-clip: text;
   color: transparent;
   animation: gradient 8s ease infinite;
-}
-
-* {
-  cursor: none !important;
-}
-
-a,
-button,
-input,
-textarea,
-select,
-[role='button'] {
-  cursor: none !important;
-}
-
-@media (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
-}
-
-@layer utilities {
-  /* Toast animations */
-  @keyframes enter {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes exit {
-    from {
-      opacity: 1;
-      transform: scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-  }
-
-  @keyframes slide-in-from-right {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-in-from-bottom {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-
-  .animate-in {
-    animation: enter 150ms ease-out;
-  }
-
-  .animate-out {
-    animation: exit 150ms ease-in;
-  }
-
-  .slide-in-from-top-full {
-    animation: slide-in-from-top 150ms ease-out;
-  }
-
-  .slide-in-from-bottom-full {
-    animation: slide-in-from-bottom 150ms ease-out;
-  }
-
-  .slide-out-to-right-full {
-    animation: slide-in-from-right 150ms ease-in reverse;
-  }
-
-  .fade-out-80 {
-    animation: fade-out 150ms ease-in;
-  }
 }
 
 @keyframes gradient {

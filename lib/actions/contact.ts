@@ -88,6 +88,7 @@ export async function contactAction(prevState: unknown, formData: FormData): Pro
 
     return { success: true };
   } catch (error) {
+    // oxlint-disable-next-line no-console -- server-side error logging
     console.error('Contact form error:', error);
     return { error: 'Failed to send message. Please try again later.', values };
   }

@@ -30,7 +30,7 @@ export function ScrollProgress({ className }: ScrollProgressProps = {}) {
     <motion.div
       ref={progressRef}
       className={cn(
-        'fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] origin-left z-50',
+        'fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-secondary origin-left z-50',
         className
       )}
       style={{ scaleX }}

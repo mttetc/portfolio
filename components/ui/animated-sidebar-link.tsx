@@ -70,8 +70,8 @@ export const AnimatedSidebarLink = memo(
         {link.icon}
         <motion.span
           animate={{
-            display: animate ? (open ? 'inline-block' : 'none') : 'inline-block',
-            opacity: animate ? (open ? 1 : 0) : 1,
+            display: animate && !open ? 'none' : 'inline-block',
+            opacity: animate && !open ? 0 : 1,
           }}
           className="text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre overflow-hidden"
         >

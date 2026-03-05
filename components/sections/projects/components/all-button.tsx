@@ -19,6 +19,7 @@ export const AllButton = ({ isActive, onClick }: AllButtonProps) => {
 
   return (
     <button
+      type="button"
       {...buttonProps}
       ref={ref}
       className={`

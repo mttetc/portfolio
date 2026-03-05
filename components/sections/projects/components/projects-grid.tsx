@@ -1,3 +1,5 @@
+'use client';
+
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
 import { useButton } from '@react-aria/button';
 import { motion, AnimatePresence } from 'motion/react';
@@ -9,9 +11,9 @@ const LazyProjectCard = dynamic(() => import('./project-card').then(mod => mod.P
   loading: () => (
     <div className="gradient-border animate-pulse">
       <div className="p-6 bg-muted h-full">
-        <div className="w-full h-48 mb-4 rounded-lg bg-[hsl(var(--adaptive-primary)_/_0.1)]" />
-        <div className="h-8 w-2/3 mb-4 rounded bg-[hsl(var(--adaptive-primary)_/_0.1)]" />
-        <div className="h-20 rounded bg-[hsl(var(--adaptive-primary)_/_0.1)]" />
+        <div className="w-full h-48 mb-4 rounded-lg bg-primary/10" />
+        <div className="h-8 w-2/3 mb-4 rounded bg-primary/10" />
+        <div className="h-20 rounded bg-primary/10" />
       </div>
     </div>
   ),
@@ -77,6 +79,7 @@ export const ProjectsGrid = () => {
           transition={{ delay: 0.2 }}
         >
           <button
+            type="button"
             {...buttonProps}
             ref={buttonRef}
             className="px-8 py-3 border bg-muted rounded-full hover:scale-[1.02] active:scale-[0.98] transition-transform"

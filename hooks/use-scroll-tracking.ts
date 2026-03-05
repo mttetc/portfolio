@@ -23,7 +23,6 @@ export function useScrollTracking() {
     const scrollContainer = document.getElementById('scroll-container');
 
     if (!scrollContainer) {
-      console.warn('Scrollable container not found');
       return;
     }
 

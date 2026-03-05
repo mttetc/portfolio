@@ -5,7 +5,7 @@ import { isMobile, isTablet } from 'react-device-detect';
 
 export function MobileViewportHandler() {
   useEffect(() => {
-    if (!isMobile || !isTablet) return;
+    if (!isMobile && !isTablet) return;
     if (typeof window === 'undefined') return;
 
     let initialViewportHeight = window.innerHeight;

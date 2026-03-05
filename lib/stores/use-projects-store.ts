@@ -1,10 +1,12 @@
-import { PROJECTS } from '@/constants/projects';
+import { Project } from '@/lib/schemas/projects';
 import { create } from 'zustand';
 
 interface ProjectsState {
+  projects: Project[];
   activeFilters: string[];
-  filteredProjects: typeof PROJECTS;
+  filteredProjects: Project[];
   visibleCount: number;
+  setProjects: (projects: Project[]) => void;
   toggleFilter: (filter: string) => void;
   showMore: () => void;
   resetCount: () => void;
@@ -16,9 +18,9 @@ const ITEMS_PER_PAGE = {
   desktop: 6,
 };
 
-const filterProjects = (filters: string[]) => {
-  if (filters.includes('All')) return PROJECTS;
-  return PROJECTS.filter(project => project.stack.some(techName => filters.includes(techName)));
+const filterProjects = (projects: Project[], filters: string[]) => {
+  if (filters.includes('All')) return projects;
+  return projects.filter(project => project.stack.some(techName => filters.includes(techName)));
 };
 
 const getInitialItemCount = () => {
@@ -26,16 +28,22 @@ const getInitialItemCount = () => {
   return window.innerWidth < 768 ? ITEMS_PER_PAGE.mobile : ITEMS_PER_PAGE.desktop;
 };
 
-export const useProjectsStore = create<ProjectsState>(set => ({
+export const useProjectsStore = create<ProjectsState>((set, get) => ({
+  projects: [],
   activeFilters: defaultFilters,
-  filteredProjects: PROJECTS,
+  filteredProjects: [],
   visibleCount: getInitialItemCount(),
+  setProjects: (projects: Project[]) =>
+    set({
+      projects,
+      filteredProjects: filterProjects(projects, get().activeFilters),
+    }),
   toggleFilter: (filter: string) => {
     set(state => {
       if (filter === 'All') {
         return {
           activeFilters: defaultFilters,
-          filteredProjects: PROJECTS,
+          filteredProjects: state.projects,
           visibleCount: getInitialItemCount(),
         };
       }
@@ -47,13 +55,13 @@ export const useProjectsStore = create<ProjectsState>(set => ({
         if (updatedFilters.length === 0) {
           return {
             activeFilters: defaultFilters,
-            filteredProjects: PROJECTS,
+            filteredProjects: state.projects,
             visibleCount: getInitialItemCount(),
           };
         }
         return {
           activeFilters: updatedFilters,
-          filteredProjects: filterProjects(updatedFilters),
+          filteredProjects: filterProjects(state.projects, updatedFilters),
           visibleCount: getInitialItemCount(),
         };
       }
@@ -61,7 +69,7 @@ export const useProjectsStore = create<ProjectsState>(set => ({
       const updatedFilters = [...newFilters, filter];
       return {
         activeFilters: updatedFilters,
-        filteredProjects: filterProjects(updatedFilters),
+        filteredProjects: filterProjects(state.projects, updatedFilters),
         visibleCount: getInitialItemCount(),
       };
     });

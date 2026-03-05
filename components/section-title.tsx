@@ -1,4 +1,6 @@
-import * as motion from 'motion/react-client';
+'use client';
+
+import { motion } from 'motion/react';
 
 interface SectionTitleProps {
   title: string;

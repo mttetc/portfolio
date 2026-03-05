@@ -1,4 +1,6 @@
-import * as motion from 'motion/react-client';
+'use client';
+
+import { motion } from 'motion/react';
 import { TypingCodeBlock } from '@/components/typing-code-block';
 
 const codeString = `// Welcome to my Portfolio! 🚀
@@ -46,9 +48,9 @@ export function HeroCodeBlock() {
       <div className="rounded-lg overflow-hidden shadow-xl">
         {/* Window Controls */}
         <div className="flex items-center gap-2 p-3 bg-[#1e1e2e]">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+          <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
 
         {/* Code Content */}

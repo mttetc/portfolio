@@ -28,11 +28,11 @@ export const SidebarContainer = ({ children, className, ...props }: SidebarConta
   return (
     <motion.div
       className={cn(
-        'h-full px-4 py-4 hidden md:flex md:flex-col bg-muted w-[60px] flex-shrink-0',
+        'h-full px-4 py-4 hidden md:flex md:flex-col bg-muted w-[60px] shrink-0',
         className
       )}
       animate={{
-        width: animate ? (open ? '200px' : '60px') : '60px',
+        width: animate && open ? '200px' : '60px',
       }}
       transition={{ duration: 0.2, ease: 'easeInOut' }}
       onMouseEnter={handleMouseEnter}
