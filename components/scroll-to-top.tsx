@@ -38,7 +38,7 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
-      className="fixed bottom-14 right-6 z-50 p-3 bg-muted/30 border rounded-full"
+      className="fixed bottom-14 right-6 z-50 p-3 bg-muted/40 backdrop-blur-sm border rounded-full"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Scroll to top of page"

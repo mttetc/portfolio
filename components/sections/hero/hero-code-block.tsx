@@ -3,23 +3,25 @@
 import { motion } from 'motion/react';
 import { TypingCodeBlock } from '@/components/typing-code-block';
 
-const codeString = `// Welcome to my Portfolio!
-import { NextJS, NodeJS, React, TypeScript } from '@/tech-stack';
-import { TailwindCSS } from '@/ui-tools';
-import { ClaudeCode, MCP, Skills, Agents } from '@/ai-tools';
+const codeString = `import { Injectable } from '@nestjs/common';
 
-function createAmazingWebsite() {
-  const skills = {
-    webDev: [React, NextJS, NodeJS, NestJS, ExpressJS, TypeScript, TailwindCSS],
-    aiTools: [ClaudeCode, MCP, Skills, Agents]
+@Injectable()
+export class EngineerService {
+  private readonly stack = {
+    frontend: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind'],
+    backend: ['Node.js', 'NestJS', 'Express', 'Supabase', 'AWS'],
+    testing: ['Jest', 'Vitest', 'Cypress', 'Playwright'],
+    ai: ['Claude Code', 'MCP', 'Agentic Coding'],
   };
 
-  return {
-    message: "Let's work together!",
-    services: ["Web Apps", "Problem Solving", "Team Collaboration", "Fast Learning"],
-    contact: "etchegaray.matthias@gmail.com"
-  };
-};`;
+  async handleProject(brief: string) {
+    const plan = await this.analyze(brief);
+    const solution = await this.build(plan, this.stack);
+    const tested = await this.test(solution);
+
+    return { solution: tested, quality: '100%' };
+  }
+}`;
 
 const getImageVariants = () => ({
   hidden: {

@@ -72,31 +72,30 @@ export const ProjectCard = memo(({ project, hovered, dimmed }: ProjectCardProps)
       }}
     >
       {hasImage ? (
-        <div className="flex flex-col">
-          {/* Image — natural height */}
+        <div className="relative overflow-hidden">
+          {/* Image as absolute background */}
           <Image
             src={project.image}
             alt={`Screenshot of ${project.name}`}
-            width={600}
-            height={600}
-            className="w-full h-auto"
+            fill
+            className="object-cover"
             sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 50dvw, 33dvw"
             loading="lazy"
             placeholder="blur"
           />
 
-          {/* Gradient bridge between image and content */}
-          <div className="-mt-24 h-24 relative z-[1]" style={{ background: 'linear-gradient(to bottom, transparent 0%, black 100%)' }} />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.95) 100%)' }} />
 
-          {/* Content on solid black */}
-          <div className="bg-black px-4 sm:px-5 pb-4 sm:pb-5 space-y-2 relative z-[1]">
+          {/* Content in flow — drives the card height */}
+          <div className="relative z-[1] px-4 sm:px-5 pb-4 sm:pb-5 pt-30 space-y-2">
             <h3
               id={`project-${project.name}`}
               className="text-lg font-bold text-white"
             >
               {project.name}
             </h3>
-            <p className="text-white/70 text-sm leading-relaxed line-clamp-5">
+            <p className="text-white/70 text-sm leading-relaxed line-clamp-3">
               {project.description}
             </p>
             <div

@@ -13,8 +13,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Matthias Etchegaray',
-  description: 'Just my projects',
+  title: 'Matthias Etchegaray | Senior Frontend / Full Stack Engineer',
+  description: 'Senior Frontend / Full Stack Engineer with 10 years of experience building modern web applications with React, Next.js, TypeScript, and AI-powered tools.',
 };
 
 export const viewport: Viewport = {

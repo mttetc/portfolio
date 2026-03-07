@@ -7,13 +7,14 @@ import { HeroScrollIndicator } from './hero-scroll-indicator';
 import { HeroEntrance } from './hero-entrance';
 
 const texts = [
-  'Frontend Developer ✨',
-  'UI/UX Enthusiast 🎨',
+  'Senior Frontend Engineer ✨',
+  'Full Stack Developer 🚀',
   'React Specialist ⚛️',
-  'Performance Optimizer 🚀',
+  'AI-Powered Developer 🤖',
+  'UI/UX Enthusiast 🎨',
+  'Performance Optimizer ⚡',
   'Problem Solver 🧩',
-  'Lifelong Learner 📚',
-  'Team Player 🤝',
+  'Agentic Engineer 🤝',
 ];
 
 export default function Hero() {
@@ -48,7 +49,7 @@ export default function Hero() {
               </div>
 
               <p className="text-muted-foreground text-sm md:text-base">
-                Building immersive digital experiences with modern web technologies and creative design.
+                10 years crafting high-performance web apps with React, Next.js, TypeScript, and AI-powered development tools.
               </p>
 
               <HeroInteractive />

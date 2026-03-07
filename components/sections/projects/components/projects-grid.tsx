@@ -67,31 +67,28 @@ export const ProjectsGrid = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
           >
-            <AnimatePresence>
-              {visibleProjects.map((project, index) => (
-                <motion.div
-                  key={project.name}
-                  layout
-                  className="break-inside-avoid mb-4 sm:mb-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    opacity: { duration: 0.3 },
-                    layout: { duration: 0.3, type: 'spring', bounce: 0.1 },
-                  }}
-                  onMouseEnter={() => setHovered(index)}
-                >
-                  <ProjectCard
-                    project={project}
-                    hovered={hovered === index}
-                    dimmed={hovered !== null && hovered !== index}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={project.name}
+                layout="position"
+                className="break-inside-avoid mb-4 sm:mb-6 will-change-transform"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  opacity: { duration: 0.15 },
+                  layout: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] },
+                }}
+                onMouseEnter={() => setHovered(index)}
+              >
+                <ProjectCard
+                  project={project}
+                  hovered={hovered === index}
+                  dimmed={hovered !== null && hovered !== index}
+                />
+              </motion.div>
+            ))}
           </motion.div>
         </AnimatePresence>
       </LayoutGroup>

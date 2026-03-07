@@ -132,7 +132,7 @@ export function ContactClient() {
                         {...linkProps[index]}
                         ref={refs[index]}
                         rel="noopener noreferrer"
-                        className="block p-3 bg-muted hover:bg-muted/80 transition-colors rounded-xl border !text-muted-foreground hover:!text-foreground"
+                        className="block p-3 bg-muted hover:bg-muted/80 transition-colors rounded-xl border !text-muted-foreground hover:!text-primary"
                       >
                         <social.icon size={22} aria-hidden="true" />
                       </a>
