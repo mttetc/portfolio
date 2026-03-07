@@ -1,21 +1,27 @@
+'use client';
+
 import { Technology } from '@/constants/technologies';
+import { useThemeStore } from '@/lib/stores/use-theme-store';
 
 interface TechBadgeProps {
   tech: Technology;
 }
 
-function isColorTooDark(hex: string): boolean {
+function getVisibleColor(hex: string, isDark: boolean): string {
   const c = hex.replace('#', '');
   const r = parseInt(c.substring(0, 2), 16);
   const g = parseInt(c.substring(2, 4), 16);
   const b = parseInt(c.substring(4, 6), 16);
-  // Relative luminance threshold
-  return (r * 299 + g * 587 + b * 114) / 1000 < 80;
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  if (isDark && brightness < 80) return '#ffffff';
+  if (!isDark && brightness > 200) return '#14b8a6';
+  return hex;
 }
 
 export const TechBadge = ({ tech }: TechBadgeProps) => {
+  const theme = useThemeStore(s => s.theme);
   const Component = tech.icon;
-  const color = isColorTooDark(tech.color) ? '#ffffff' : tech.color;
+  const color = getVisibleColor(tech.color, theme === 'dark');
   return (
     <span
       role="listitem"

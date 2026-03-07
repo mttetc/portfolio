@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn(GeistSans.variable, 'h-full overflow-hidden')}>
+    <html lang="en" className={cn(GeistSans.variable, 'h-full')}>
       <body className="bg-muted grid grid-rows-[auto_1fr] h-full">
         <TooltipProvider delayDuration={0}>
           <MobileViewportHandler />

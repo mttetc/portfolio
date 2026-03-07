@@ -114,7 +114,6 @@ export function ContactClient() {
                         className="block p-4 bg-muted hover:bg-background/80 transition-colors rounded-xl border"
                       >
                         <social.icon size={24} aria-hidden="true" />
-                        <span className="sr-only">Visit my {social.name} profile</span>
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>

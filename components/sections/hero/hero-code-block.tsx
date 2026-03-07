@@ -48,7 +48,7 @@ export function HeroCodeBlock() {
     >
       <div className="rounded-lg overflow-hidden shadow-xl">
         {/* Window Controls */}
-        <div className="flex items-center gap-2 p-3 bg-[#1e1e2e]">
+        <div className="flex items-center gap-2 p-3 bg-background-darker">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
