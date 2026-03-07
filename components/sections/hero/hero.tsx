@@ -3,6 +3,8 @@ import { FIRST_NAME } from '@/constants/names';
 import { HeroCodeBlock } from './hero-code-block';
 import { HeroAvatar } from './hero-avatar';
 import { HeroInteractive } from './hero-interactive';
+import { HeroScrollIndicator } from './hero-scroll-indicator';
+import { HeroEntrance } from './hero-entrance';
 
 const texts = [
   'Frontend Developer ✨',
@@ -23,13 +25,13 @@ export default function Hero() {
     >
       <div className="relative w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-          <div className="flex flex-col items-center gap-6">
+          <HeroEntrance className="flex flex-col items-center gap-6">
             {/* Avatar */}
             <HeroAvatar />
 
             {/* Text Content */}
             <div className="text-center flex flex-col gap-5 w-full">
-              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Hello 👋, I&apos;m</h2>
+              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-primary">Hello, I&apos;m</h2>
 
               <h1
                 id="hero-title"
@@ -45,14 +47,19 @@ export default function Hero() {
                 </p>
               </div>
 
+              <p className="text-muted-foreground text-sm md:text-base">
+                Building immersive digital experiences with modern web technologies and creative design.
+              </p>
+
               <HeroInteractive />
             </div>
-          </div>
+          </HeroEntrance>
 
           {/* Code Block - Right Side */}
           <HeroCodeBlock />
         </div>
       </div>
+      <HeroScrollIndicator />
     </section>
   );
 }

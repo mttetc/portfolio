@@ -3,28 +3,27 @@
 import { motion } from 'motion/react';
 
 interface SectionTitleProps {
+  label: string;
   title: string;
-  icon: 'projects' | 'about' | 'contact';
 }
 
-const emojis: Record<string, string> = {
-  projects: '🚀',
-  about: '👨‍💻',
-  contact: '📬',
-};
-
-export function SectionTitle({ title, icon }: SectionTitleProps) {
-  const emoji = emojis[icon];
-
+export function SectionTitle({ label, title }: SectionTitleProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex items-center gap-4 mb-8"
+      className="text-center mb-12"
     >
-      <h2 className="text-4xl lg:text-5xl font-semibold">
-        {emoji} {title}
+      <div className="flex items-center justify-center gap-4 mb-3">
+        <span className="h-px w-8 bg-primary" />
+        <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+          {label}
+        </span>
+        <span className="h-px w-8 bg-primary" />
+      </div>
+      <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
+        {title}
       </h2>
     </motion.div>
   );

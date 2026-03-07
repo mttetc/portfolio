@@ -1,111 +1,162 @@
 'use client';
 
-import { getTechnology, Technology } from '@/constants/technologies';
+import { getTechnology } from '@/constants/technologies';
 import { Project } from '@/lib/schemas/projects';
-import { motion } from 'motion/react';
 import Image from 'next/image';
-import { memo, useMemo, useRef } from 'react';
+import { memo, useMemo } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { SiGithub } from 'react-icons/si';
 import { TechBadge } from './tech-badge';
-import { useButton } from '@react-aria/button';
 
 interface ProjectCardProps {
   project: Project;
+  hovered: boolean;
+  dimmed: boolean;
 }
 
-export const ProjectCard = memo(({ project }: ProjectCardProps) => {
+const isPlaceholder = (src: string | { src: string }) => {
+  const s = typeof src === 'string' ? src : src.src;
+  return s.startsWith('data:');
+};
+
+export const ProjectCard = memo(({ project, hovered, dimmed }: ProjectCardProps) => {
+  const hasImage = !isPlaceholder(project.image);
+
   const techBadges = useMemo(
     () =>
       project.stack
+        .slice(0, 6)
         .map(getTechnology)
-        .map(tech => <TechBadge key={tech.name} tech={tech} />),
-    [project.stack]
+        .map(tech => <TechBadge key={tech.name} tech={tech} onDark={hasImage} />),
+    [project.stack, hasImage]
   );
 
-  const githubRef = useRef(null);
-  const liveRef = useRef(null);
-
-  const { buttonProps: githubProps } = useButton(
-    {
-      onPress: () => window.open(project.github, '_blank'),
-      'aria-label': `View ${project.name} source code on GitHub`,
-    },
-    githubRef
-  );
-
-  const { buttonProps: liveProps } = useButton(
-    {
-      onPress: () => window.open(project.url, '_blank'),
-      'aria-label': `Visit ${project.name} live site`,
-    },
-    liveRef
+  const actionButtons = (
+    <div
+      className="absolute top-3 right-3 flex gap-2 z-20 transition-opacity duration-200"
+      style={{ opacity: hovered ? 1 : 0 }}
+    >
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-full bg-black/50 backdrop-blur-sm !text-white hover:bg-black/70 transition-colors"
+          aria-label={`View ${project.name} source code on GitHub`}
+        >
+          <SiGithub className="w-4 h-4" aria-hidden="true" />
+        </a>
+      )}
+      {project.url && (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-full bg-black/50 backdrop-blur-sm !text-white hover:bg-black/70 transition-colors"
+          aria-label={`Visit ${project.name} live site`}
+        >
+          <FiExternalLink className="w-4 h-4" aria-hidden="true" />
+        </a>
+      )}
+    </div>
   );
 
   return (
-    <motion.article
+    <article
       aria-labelledby={`project-${project.name}`}
-      className="relative h-[300px] sm:h-[350px] md:h-[400px] group overflow-hidden rounded-xl border"
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.15 }}
+      className={`relative rounded-xl overflow-hidden transition-all duration-300 border ${hasImage ? 'bg-black border-white/10' : 'bg-card border-border'}`}
+      style={{
+        opacity: dimmed ? 0.7 : 1,
+        filter: dimmed ? 'blur(1px)' : 'none',
+        transform: hovered ? 'scale(1.02)' : 'scale(1)',
+      }}
     >
-      <Image
-        src={project.image}
-        alt={`Screenshot of ${project.name}`}
-        fill
-        className="object-cover z-0"
-        sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 50dvw, 33dvw"
-        loading={project.name === 'Quaestio' ? 'eager' : 'lazy'}
-        placeholder={project.name === 'Quaestio' ? undefined : 'blur'}
-      />
-      <div className="absolute inset-0 bg-background/80 group-hover:bg-background/70 transition-colors duration-300 z-10" />
+      {hasImage ? (
+        <div className="flex flex-col">
+          {/* Image — natural height */}
+          <Image
+            src={project.image}
+            alt={`Screenshot of ${project.name}`}
+            width={600}
+            height={600}
+            className="w-full h-auto"
+            sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 50dvw, 33dvw"
+            loading="lazy"
+            placeholder="blur"
+          />
 
-      <div className="absolute inset-0 p-3 sm:p-4 md:p-6 flex flex-col z-20 text-foreground">
-        <div className="flex justify-end gap-4 mb-auto">
-          {project.github && (
-            <button
-              type="button"
-              {...githubProps}
-              ref={githubRef}
-              className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"
-              aria-label={`View ${project.name} source code on GitHub`}
+          {/* Gradient bridge between image and content */}
+          <div className="-mt-24 h-24 relative z-[1]" style={{ background: 'linear-gradient(to bottom, transparent 0%, black 100%)' }} />
+
+          {/* Content on solid black */}
+          <div className="bg-black px-4 sm:px-5 pb-4 sm:pb-5 space-y-2 relative z-[1]">
+            <h3
+              id={`project-${project.name}`}
+              className="text-lg font-bold text-white"
             >
-              <SiGithub className="w-6 h-6" aria-hidden="true" />
-            </button>
-          )}
-          {project.url && (
-            <button
-              type="button"
-              {...liveProps}
-              ref={liveRef}
-              className="p-2 bg-muted rounded-full hover:scale-105 active:scale-95 transition-transform"
-              aria-label={`Visit ${project.name} live site`}
+              {project.name}
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed line-clamp-5">
+              {project.description}
+            </p>
+            <div
+              className="flex flex-wrap gap-1.5 pt-1"
+              role="list"
+              aria-label={`Technologies used in ${project.name}`}
             >
-              <FiExternalLink className="w-6 h-6" aria-hidden="true" />
-            </button>
-          )}
+              {techBadges}
+            </div>
+          </div>
+
+          {actionButtons}
         </div>
-
-        <div className="mt-auto overflow-y-auto">
-          <h3
-            id={`project-${project.name}`}
-            className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4"
-          >
-            {project.name}
-          </h3>
-          <p className="text-foreground/80 mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base">
+      ) : (
+        <div className="p-4 sm:p-5 space-y-2">
+          <div className="flex items-center justify-between gap-2">
+            <h3
+              id={`project-${project.name}`}
+              className="text-lg font-bold text-foreground"
+            >
+              {project.name}
+            </h3>
+            <div className="flex gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-muted border border-border !text-muted-foreground hover:!text-foreground transition-colors"
+                  aria-label={`View ${project.name} source code on GitHub`}
+                >
+                  <SiGithub className="w-4 h-4" aria-hidden="true" />
+                </a>
+              )}
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-muted border border-border !text-muted-foreground hover:!text-foreground transition-colors"
+                  aria-label={`Visit ${project.name} live site`}
+                >
+                  <FiExternalLink className="w-4 h-4" aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          </div>
+          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-5">
             {project.description}
           </p>
           <div
-            className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-2"
+            className="flex flex-wrap gap-1.5 pt-1"
             role="list"
             aria-label={`Technologies used in ${project.name}`}
           >
             {techBadges}
           </div>
         </div>
-      </div>
-    </motion.article>
+      )}
+    </article>
   );
 });
 

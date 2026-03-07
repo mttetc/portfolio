@@ -11,20 +11,14 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <motion.button
+    <button
       type="submit"
       disabled={pending}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="w-full p-4 rounded-xl font-medium relative overflow-hidden group disabled:opacity-70 text-white"
+      className="w-full py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-70 flex items-center justify-center gap-2"
     >
-      <div className="absolute inset-0 bg-linear-to-r from-primary to-secondary transition-transform group-hover:scale-105" />
-      <div className="absolute inset-0 bg-linear-to-r from-secondary to-primary opacity-0 transition-opacity group-hover:opacity-100" />
-      <div className="relative flex items-center justify-center gap-2">
-        <span>{pending ? 'Sending...' : 'Send Message'}</span>
-        <FiSend className={`${pending ? '' : 'group-hover:translate-x-1'} transition-transform`} />
-      </div>
-    </motion.button>
+      <span>{pending ? 'Sending...' : 'Send Message'}</span>
+      <FiSend />
+    </button>
   );
 }
 
@@ -59,76 +53,70 @@ export function ContactForm() {
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
+      className="rounded-2xl border p-6 md:p-8 space-y-5"
     >
-      <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2 md:col-span-1">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              defaultValue={state.values?.name}
-              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
-                state.fieldErrors?.name
-                  ? 'ring-2 ring-red-500 focus:ring-red-500'
-                  : 'focus:ring-primary'
-              }`}
-            />
-            {state.fieldErrors?.name && (
-              <span className="text-sm text-red-500 mt-1">{state.fieldErrors.name}</span>
-            )}
-          </div>
-          <div className="col-span-2 md:col-span-1">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              defaultValue={state.values?.email}
-              className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
-                state.fieldErrors?.email
-                  ? 'ring-2 ring-red-500 focus:ring-red-500'
-                  : 'focus:ring-primary'
-              }`}
-            />
-            {state.fieldErrors?.email && (
-              <span className="text-sm text-red-500 mt-1">{state.fieldErrors.email}</span>
-            )}
-          </div>
-        </div>
-        <div>
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            defaultValue={state.values?.subject}
-            className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
-              state.fieldErrors?.subject
-                ? 'ring-2 ring-red-500 focus:ring-red-500'
-                : 'focus:ring-primary'
-            }`}
-          />
-          {state.fieldErrors?.subject && (
-            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.subject}</span>
-          )}
-        </div>
-        <div>
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows={6}
-            defaultValue={state.values?.message}
-            className={`bg-muted border w-full p-4 placeholder:text-muted-foreground rounded-xl focus:outline-hidden focus:ring-2 transition-all resize-none text-base ${
-              state.fieldErrors?.message
-                ? 'ring-2 ring-red-500 focus:ring-red-500'
-                : 'focus:ring-primary'
-            }`}
-          />
-          {state.fieldErrors?.message && (
-            <span className="text-sm text-red-500 mt-1">{state.fieldErrors.message}</span>
-          )}
-        </div>
-        <SubmitButton />
+      <div>
+        <label htmlFor="contact-name" className="block text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+          Name
+        </label>
+        <input
+          id="contact-name"
+          type="text"
+          name="name"
+          placeholder="John Doe"
+          defaultValue={state.values?.name}
+          className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
+            state.fieldErrors?.name
+              ? 'ring-2 ring-red-500 focus:ring-red-500'
+              : 'focus:ring-primary'
+          }`}
+        />
+        {state.fieldErrors?.name && (
+          <span className="text-sm text-red-500 mt-1">{state.fieldErrors.name}</span>
+        )}
       </div>
+      <div>
+        <label htmlFor="contact-email" className="block text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+          Email
+        </label>
+        <input
+          id="contact-email"
+          type="email"
+          name="email"
+          placeholder="john@example.com"
+          defaultValue={state.values?.email}
+          className={`bg-muted border w-full placeholder:text-muted-foreground p-4 rounded-xl focus:outline-hidden focus:ring-2 transition-all text-base ${
+            state.fieldErrors?.email
+              ? 'ring-2 ring-red-500 focus:ring-red-500'
+              : 'focus:ring-primary'
+          }`}
+        />
+        {state.fieldErrors?.email && (
+          <span className="text-sm text-red-500 mt-1">{state.fieldErrors.email}</span>
+        )}
+      </div>
+      <input type="hidden" name="subject" value="Contact form" />
+      <div>
+        <label htmlFor="contact-message" className="block text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+          Message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          placeholder="Your message..."
+          rows={5}
+          defaultValue={state.values?.message}
+          className={`bg-muted border w-full p-4 placeholder:text-muted-foreground rounded-xl focus:outline-hidden focus:ring-2 transition-all resize-none text-base ${
+            state.fieldErrors?.message
+              ? 'ring-2 ring-red-500 focus:ring-red-500'
+              : 'focus:ring-primary'
+          }`}
+        />
+        {state.fieldErrors?.message && (
+          <span className="text-sm text-red-500 mt-1">{state.fieldErrors.message}</span>
+        )}
+      </div>
+      <SubmitButton />
     </motion.form>
   );
 }

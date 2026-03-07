@@ -97,6 +97,7 @@ const TOPIC_MAP: Record<string, string> = {
   'pdf-lib': 'pdf-lib',
   heroui: 'HeroUI',
   csrf: 'CSRF',
+  'react-pdf': 'React PDF',
 };
 
 function topicToDisplayName(topic: string): string {

@@ -1,13 +1,17 @@
 import { Project } from '@/lib/schemas/projects';
 import { create } from 'zustand';
 
+type MatchMode = 'any' | 'all';
+
 interface ProjectsState {
   projects: Project[];
   activeFilters: string[];
+  matchMode: MatchMode;
   filteredProjects: Project[];
   visibleCount: number;
   setProjects: (projects: Project[]) => void;
   toggleFilter: (filter: string) => void;
+  toggleMatchMode: () => void;
   showMore: () => void;
   resetCount: () => void;
 }
@@ -18,8 +22,11 @@ const ITEMS_PER_PAGE = {
   desktop: 6,
 };
 
-const filterProjects = (projects: Project[], filters: string[]) => {
+const filterProjects = (projects: Project[], filters: string[], mode: MatchMode) => {
   if (filters.includes('All')) return projects;
+  if (mode === 'all') {
+    return projects.filter(project => filters.every(f => project.stack.includes(f)));
+  }
   return projects.filter(project => project.stack.some(techName => filters.includes(techName)));
 };
 
@@ -31,15 +38,17 @@ const getInitialItemCount = () => {
 export const useProjectsStore = create<ProjectsState>((set, get) => ({
   projects: [],
   activeFilters: defaultFilters,
+  matchMode: 'any' as MatchMode,
   filteredProjects: [],
   visibleCount: getInitialItemCount(),
   setProjects: (projects: Project[]) =>
     set({
       projects,
-      filteredProjects: filterProjects(projects, get().activeFilters),
+      filteredProjects: filterProjects(projects, get().activeFilters, get().matchMode),
     }),
   toggleFilter: (filter: string) => {
     set(state => {
+      const { matchMode } = state;
       if (filter === 'All') {
         return {
           activeFilters: defaultFilters,
@@ -61,7 +70,7 @@ export const useProjectsStore = create<ProjectsState>((set, get) => ({
         }
         return {
           activeFilters: updatedFilters,
-          filteredProjects: filterProjects(state.projects, updatedFilters),
+          filteredProjects: filterProjects(state.projects, updatedFilters, matchMode),
           visibleCount: getInitialItemCount(),
         };
       }
@@ -69,7 +78,17 @@ export const useProjectsStore = create<ProjectsState>((set, get) => ({
       const updatedFilters = [...newFilters, filter];
       return {
         activeFilters: updatedFilters,
-        filteredProjects: filterProjects(state.projects, updatedFilters),
+        filteredProjects: filterProjects(state.projects, updatedFilters, matchMode),
+        visibleCount: getInitialItemCount(),
+      };
+    });
+  },
+  toggleMatchMode: () => {
+    set(state => {
+      const newMode = state.matchMode === 'any' ? 'all' : 'any';
+      return {
+        matchMode: newMode,
+        filteredProjects: filterProjects(state.projects, state.activeFilters, newMode),
         visibleCount: getInitialItemCount(),
       };
     });

@@ -44,9 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               className="bg-background overflow-y-auto overflow-x-hidden w-full h-full max-h-dvh rounded-tr-2xl rounded-br-2xl rounded-bl-2xl md:rounded-br-none md:rounded-bl-none md:rounded-tr-none rounded-tl-2xl border"
             >
               {children}
+              <Footer />
             </main>
           </div>
-          <Footer />
 
           <Toaster />
         </TooltipProvider>

@@ -165,6 +165,7 @@ const ICONS: Record<string, IconComponent> = {
   Motion: SiFramer,
   Phaser: IoGameController,
   'pdf-lib': FiFileText,
+  'React PDF': FiFileText,
   HeroUI: SiNextui,
   CSRF: FiShield,
 
@@ -271,6 +272,7 @@ const COLORS: Record<string, string> = {
   Motion: BRAND_COLORS.framer,
   Phaser: '#F5DB53',
   'pdf-lib': '#E44D26',
+  'React PDF': '#E44D26',
   HeroUI: '#000000',
   CSRF: '#4CAF50',
 
@@ -375,6 +377,7 @@ const URLS: Record<string, string> = {
   Motion: 'https://motion.dev',
   Phaser: 'https://phaser.io',
   'pdf-lib': 'https://pdf-lib.js.org',
+  'React PDF': 'https://react-pdf.org',
   HeroUI: 'https://heroui.com',
   CSRF: '#',
 

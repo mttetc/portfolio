@@ -86,7 +86,8 @@ export function HeroInteractive() {
         type="button"
         {...contactButtonProps}
         ref={contactButtonRef}
-        className="px-6 md:px-8 border py-2.5 md:py-3 relative z-10 block bg-muted rounded-full text-sm md:text-base lg:text-lg xl:text-xl hover:bg-background/80 transition-colors"
+        className="px-6 sm:px-8 py-3 rounded-full text-primary font-semibold hover:bg-primary/10 transition-colors"
+        style={{ border: '1px solid var(--primary)' }}
       >
         Get in Touch
       </button>
@@ -94,7 +95,7 @@ export function HeroInteractive() {
         type="button"
         {...projectsButtonProps}
         ref={projectsButtonRef}
-        className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-primary text-white text-sm md:text-base lg:text-lg xl:text-xl hover:opacity-90 transition-opacity"
+        className="px-6 sm:px-8 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
       >
         View Projects
       </button>

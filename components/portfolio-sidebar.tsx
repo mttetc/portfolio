@@ -1,5 +1,6 @@
 import { NICKNAME } from '@/constants/names';
-import { FiBriefcase, FiGithub, FiHome, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiBriefcase, FiHome, FiMail } from 'react-icons/fi';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { SidebarProvider } from './ui/sidebar-provider';
 import { SidebarContainer } from './ui/sidebar-container';
 import { MobileSidebar } from './ui/mobile-sidebar';
@@ -8,7 +9,7 @@ import { AnimatedSidebarLink } from './ui/animated-sidebar-link';
 
 const sectionLinks = [
   {
-    label: 'Hero',
+    label: 'Home',
     href: '#hero',
     icon: <FiHome className="h-5 w-5 shrink-0 stroke-[1px]" />,
     id: 'hero',
@@ -31,12 +32,12 @@ const socialLinks = [
   {
     label: 'GitHub',
     href: `https://github.com/${NICKNAME}`,
-    icon: <FiGithub className=" h-5 w-5 shrink-0 stroke-[1px]" />,
+    icon: <SiGithub className="h-5 w-5 shrink-0" />,
   },
   {
     label: 'LinkedIn',
     href: `https://linkedin.com/in/${NICKNAME}`,
-    icon: <FiLinkedin className="h-5 w-5 shrink-0 stroke-[1px]" />,
+    icon: <SiLinkedin className="h-5 w-5 shrink-0" />,
   },
 ];
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { memo, useRef } from 'react';
 import { ProjectsGrid } from './components/projects-grid';
 import { TechFilters } from './components/tech-filters';
@@ -24,10 +24,14 @@ export const ProjectsClient = memo(function ProjectsClient({ projects }: Project
   return (
     <div ref={ref}>
       {isInView && (
-        <>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <TechFilters />
           <ProjectsGrid />
-        </>
+        </motion.div>
       )}
     </div>
   );
