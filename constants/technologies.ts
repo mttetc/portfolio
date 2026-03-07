@@ -47,10 +47,15 @@ import {
   SiUpstash,
   SiRadixui,
   SiShadcnui,
+  SiTelegram,
+  SiReactivex,
+  SiNextui,
 } from 'react-icons/si';
 import { TbBrandReactNative, TbRobot } from 'react-icons/tb';
 import { BiLogoJavascript } from 'react-icons/bi';
 import { GiBearFace } from 'react-icons/gi';
+import { FiShield, FiFileText, FiServer, FiLayers, FiZap } from 'react-icons/fi';
+import { IoGameController } from 'react-icons/io5';
 
 export interface Technology {
   name: string;
@@ -144,8 +149,24 @@ const ICONS: Record<string, IconComponent> = {
 
   // Tools
   Docker: SiDocker,
-  Protobuf: SiReact,
+  Protobuf: FiZap,
   Zod: SiZod,
+
+  // Tanstack
+  'Tanstack Router': SiReactquery,
+  'Tanstack Start': SiReactquery,
+
+  // Misc
+  'Telegram Bot': SiTelegram,
+  Apify: TbRobot,
+  SSE: FiServer,
+  'Clean Architecture': FiLayers,
+  RxJS: SiReactivex,
+  Motion: SiFramer,
+  Phaser: IoGameController,
+  'pdf-lib': FiFileText,
+  HeroUI: SiNextui,
+  CSRF: FiShield,
 
   // Legacy
   JQuery: SiJquery,
@@ -237,6 +258,22 @@ const COLORS: Record<string, string> = {
   Protobuf: '#4285F4',
   Zod: '#3E6F9E',
 
+  // Tanstack
+  'Tanstack Router': '#FF4154',
+  'Tanstack Start': '#FF4154',
+
+  // Misc
+  'Telegram Bot': '#26A5E4',
+  Apify: '#97D700',
+  SSE: '#FF6B6B',
+  'Clean Architecture': '#4FC3F7',
+  RxJS: '#B7178C',
+  Motion: BRAND_COLORS.framer,
+  Phaser: '#F5DB53',
+  'pdf-lib': '#E44D26',
+  HeroUI: '#000000',
+  CSRF: '#4CAF50',
+
   // Legacy
   JQuery: BRAND_COLORS.jquery,
   Twig: BRAND_COLORS.twig,
@@ -324,6 +361,22 @@ const URLS: Record<string, string> = {
   Docker: 'https://www.docker.com',
   Protobuf: 'https://developers.google.com/protocol-buffers',
   Zod: 'https://zod.dev',
+
+  // Tanstack
+  'Tanstack Router': 'https://tanstack.com/router/latest',
+  'Tanstack Start': 'https://tanstack.com/start/latest',
+
+  // Misc
+  'Telegram Bot': 'https://core.telegram.org/bots/api',
+  Apify: 'https://apify.com',
+  SSE: 'https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events',
+  'Clean Architecture': '#',
+  RxJS: 'https://rxjs.dev',
+  Motion: 'https://motion.dev',
+  Phaser: 'https://phaser.io',
+  'pdf-lib': 'https://pdf-lib.js.org',
+  HeroUI: 'https://heroui.com',
+  CSRF: '#',
 
   // Legacy
   JQuery: 'https://jquery.com',

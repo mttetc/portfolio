@@ -88,7 +88,7 @@ export function HeroInteractive() {
         ref={contactButtonRef}
         className="px-6 md:px-8 border py-2.5 md:py-3 relative z-10 block bg-muted rounded-full text-sm md:text-base lg:text-lg xl:text-xl hover:bg-background/80 transition-colors"
       >
-        Get in Touch 📬
+        Get in Touch
       </button>
       <button
         type="button"
@@ -96,7 +96,7 @@ export function HeroInteractive() {
         ref={projectsButtonRef}
         className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-primary text-white text-sm md:text-base lg:text-lg xl:text-xl hover:opacity-90 transition-opacity"
       >
-        View Projects 🚀
+        View Projects
       </button>
     </motion.div>
   );

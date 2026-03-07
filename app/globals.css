@@ -4,78 +4,78 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --background-lighter: hsl(250 31% 20%);
-  --background: hsl(250 31% 13%);
-  --background-darker: hsl(250 31% 8%);
+  --background-lighter: hsl(0 0% 10%);
+  --background: hsl(0 0% 5%);
+  --background-darker: hsl(0 0% 2%);
   --foreground: hsl(0 0% 100%);
 
-  --card: hsl(250 31% 13%);
+  --card: hsl(0 0% 7%);
   --card-foreground: hsl(0 0% 100%);
 
-  --popover: hsl(250 31% 13%);
+  --popover: hsl(0 0% 7%);
   --popover-foreground: hsl(0 0% 100%);
 
-  --primary: hsl(236 75% 70%);
+  --primary: hsl(168 76% 40%);
   --primary-foreground: hsl(0 0% 100%);
 
-  --secondary: hsl(210 100% 60%);
+  --secondary: hsl(174 72% 46%);
   --secondary-foreground: hsl(0 0% 100%);
 
-  --muted: hsl(250 31% 20%);
-  --muted-foreground: hsl(250 31% 80%);
+  --muted: hsl(0 0% 12%);
+  --muted-foreground: hsl(0 0% 65%);
 
-  --accent: hsl(300 100% 60%);
+  --accent: hsl(162 80% 45%);
   --accent-foreground: hsl(0 0% 100%);
 
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 100%);
 
-  --border: hsl(250 31% 30%);
-  --input: hsl(270 70% 40%);
-  --ring: hsl(210 70% 50%);
+  --border: hsl(0 0% 18%);
+  --input: hsl(0 0% 15%);
+  --ring: hsl(168 76% 40%);
 
   /* Text Colors */
   --text-primary: hsl(0 0% 100%);
-  --text-secondary: hsl(250 5% 65%);
-  --text-muted: hsl(250 5% 40%);
+  --text-secondary: hsl(0 0% 70%);
+  --text-muted: hsl(0 0% 45%);
 
   --transition-normal: 0.1s ease-in-out;
 }
 
 :root[data-theme='light'] {
-  --background-lighter: hsl(250 31% 98%);
-  --background: hsl(250 31% 97%);
-  --background-darker: hsl(250 31% 95%);
-  --foreground: hsl(250 31% 9%);
+  --background-lighter: hsl(0 0% 100%);
+  --background: hsl(0 0% 98%);
+  --background-darker: hsl(0 0% 95%);
+  --foreground: hsl(0 0% 5%);
 
-  --card: hsl(250 31% 97%);
-  --card-foreground: hsl(250 31% 9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 5%);
 
-  --popover: hsl(250 31% 97%);
-  --popover-foreground: hsl(250 31% 9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 5%);
 
-  --primary: hsl(236 75% 70%);
-  --primary-foreground: hsl(236 75% 25%);
+  --primary: hsl(168 76% 33%);
+  --primary-foreground: hsl(0 0% 100%);
 
-  --secondary: hsl(210 100% 60%);
+  --secondary: hsl(174 72% 38%);
   --secondary-foreground: hsl(0 0% 100%);
 
-  --muted: hsl(250 31% 98%);
-  --muted-foreground: hsl(250 31% 40%);
+  --muted: hsl(0 0% 96%);
+  --muted-foreground: hsl(0 0% 40%);
 
-  --accent: hsl(300 100% 60%);
+  --accent: hsl(162 80% 35%);
   --accent-foreground: hsl(0 0% 100%);
 
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 100%);
 
-  --border: hsl(250 31% 88%);
-  --input: hsl(250 31% 90%);
-  --ring: hsl(210 70% 50%);
+  --border: hsl(0 0% 88%);
+  --input: hsl(0 0% 90%);
+  --ring: hsl(168 76% 33%);
 
-  --text-primary: hsl(250 31% 9%);
-  --text-secondary: hsl(250 31% 25%);
-  --text-muted: hsl(250 31% 60%);
+  --text-primary: hsl(0 0% 5%);
+  --text-secondary: hsl(0 0% 30%);
+  --text-muted: hsl(0 0% 55%);
 }
 
 @theme inline {
@@ -127,7 +127,15 @@ body {
   cursor: none;
 }
 
-a,
+a {
+  color: var(--primary);
+  cursor: none;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
 button,
 input,
 textarea,
@@ -286,17 +294,17 @@ body {
   padding: 2px;
   background: conic-gradient(
     from var(--angle),
-    #ff0080,
-    #7928ca,
-    #00ff00,
-    #00bfff,
-    #ff0080,
-    #ffd700,
-    #ff4500,
-    #7928ca,
-    #00ff00,
-    #00bfff,
-    #ff0080
+    #14b8a6,
+    #0d9488,
+    #2dd4bf,
+    #14b8a6,
+    #0f766e,
+    #14b8a6,
+    #2dd4bf,
+    #0d9488,
+    #14b8a6,
+    #2dd4bf,
+    #14b8a6
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,

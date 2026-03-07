@@ -85,6 +85,18 @@ const TOPIC_MAP: Record<string, string> = {
   ai: 'AI',
   'ai-agents': 'AI Agents',
   neon: 'Neon',
+  'telegram-bot': 'Telegram Bot',
+  apify: 'Apify',
+  sse: 'SSE',
+  'clean-architecture': 'Clean Architecture',
+  rxjs: 'RxJS',
+  motion: 'Motion',
+  phaser: 'Phaser',
+  'tanstack-router': 'Tanstack Router',
+  'tanstack-start': 'Tanstack Start',
+  'pdf-lib': 'pdf-lib',
+  heroui: 'HeroUI',
+  csrf: 'CSRF',
 };
 
 function topicToDisplayName(topic: string): string {

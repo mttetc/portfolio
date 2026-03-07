@@ -38,7 +38,7 @@ export const AnimatedLogo = memo(() => {
       <div className="relative w-8 h-8 shrink-0">
         <div className="absolute inset-0 rounded-full bg-primary/30 blur-[4px]" />
         <Avatar className="relative h-full w-full">
-          <AvatarImage src="/images/avatar.png" alt={`${FIRST_NAME}'s portrait`} />
+          <AvatarImage src="/images/avatar.jpg" alt={`${FIRST_NAME}'s portrait`} />
           <AvatarFallback>{FIRST_NAME.charAt(0)}</AvatarFallback>
         </Avatar>
       </div>

@@ -11,7 +11,7 @@ export default function Footer() {
               href="https://nextjs.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="transition-colors"
               aria-label="Visit Next.js website"
             >
               <SparklesText
@@ -26,7 +26,7 @@ export default function Footer() {
               href="https://tailwindcss.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="transition-colors"
               aria-label="Visit Tailwind CSS website"
             >
               <SparklesText

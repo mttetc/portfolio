@@ -3,14 +3,15 @@
 import { motion } from 'motion/react';
 import { TypingCodeBlock } from '@/components/typing-code-block';
 
-const codeString = `// Welcome to my Portfolio! 🚀
+const codeString = `// Welcome to my Portfolio!
 import { NextJS, NodeJS, React, TypeScript } from '@/tech-stack';
 import { TailwindCSS } from '@/ui-tools';
+import { ClaudeCode, MCP, Skills, Agents } from '@/ai-tools';
 
 function createAmazingWebsite() {
   const skills = {
     webDev: [React, NextJS, NodeJS, NestJS, ExpressJS, TypeScript, TailwindCSS],
-    aiTools: ["Cursor", "Claude", "GitHub Copilot"]
+    aiTools: [ClaudeCode, MCP, Skills, Agents]
   };
 
   return {

@@ -9,7 +9,7 @@ export default function TextGradient({ children, className = '' }: TextGradientP
       className={`
         inline-block 
         bg-clip-text text-transparent 
-        bg-linear-to-r from-pink-500 via-purple-500 to-violet-500
+        bg-linear-to-r from-teal-500 via-teal-400 to-teal-600
         animate-[gradient_4s_linear_infinite]
         bg-[length:200%_auto]
         ${className}

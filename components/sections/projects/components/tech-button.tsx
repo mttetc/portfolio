@@ -6,36 +6,47 @@ interface TechButtonProps {
   onToggle: () => void;
 }
 
-export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => (
-  <button
-    type="button"
-    onClick={onToggle}
-    className={`px-2 py-1 rounded-full flex items-center gap-2 bg-muted border`}
-    style={{
-      borderColor: isActive ? `${tech.color}30` : undefined,
-      background: isActive ? `linear-gradient(90deg, ${tech.color}10, ${tech.color}05)` : undefined,
-    }}
-  >
-    <div className="relative">
-      <tech.icon size={16} color={tech.color} className={isActive ? 'opacity-100' : 'opacity-70'} />
-      <div
-        className="absolute inset-0 blur-xs"
-        style={{
-          backgroundColor: tech.color,
-          opacity: isActive ? 0.1 : 0.05,
-          transform: 'scale(1.2)',
-          borderRadius: '50%',
-        }}
-      />
-    </div>
-    <span
-      className="text-sm"
+function isColorTooDark(hex: string): boolean {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substring(0, 2), 16);
+  const g = parseInt(c.substring(2, 4), 16);
+  const b = parseInt(c.substring(4, 6), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 < 80;
+}
+
+export const TechButton = ({ tech, isActive, onToggle }: TechButtonProps) => {
+  const color = isColorTooDark(tech.color) ? '#ffffff' : tech.color;
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className={`px-2 py-1 rounded-full flex items-center gap-2 bg-muted border`}
       style={{
-        color: isActive ? tech.color : undefined,
-        textShadow: isActive ? `0 0 10px ${tech.color}20` : undefined,
+        borderColor: isActive ? `${color}30` : undefined,
+        background: isActive ? `linear-gradient(90deg, ${color}10, ${color}05)` : undefined,
       }}
     >
-      {tech.name}
-    </span>
-  </button>
-);
+      <div className="relative">
+        <tech.icon size={16} color={color} className={isActive ? 'opacity-100' : 'opacity-70'} />
+        <div
+          className="absolute inset-0 blur-xs"
+          style={{
+            backgroundColor: color,
+            opacity: isActive ? 0.1 : 0.05,
+            transform: 'scale(1.2)',
+            borderRadius: '50%',
+          }}
+        />
+      </div>
+      <span
+        className="text-sm"
+        style={{
+          color: isActive ? color : undefined,
+          textShadow: isActive ? `0 0 10px ${color}20` : undefined,
+        }}
+      >
+        {tech.name}
+      </span>
+    </button>
+  );
+};
