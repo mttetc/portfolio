@@ -27,7 +27,7 @@ export const ProjectCard = memo(({ project, hovered, dimmed }: ProjectCardProps)
       project.stack
         .slice(0, 6)
         .map(getTechnology)
-        .map(tech => <TechBadge key={tech.name} tech={tech} onDark={hasImage} />),
+        .map(tech => <TechBadge key={tech.name} tech={tech} onDark={hasImage || undefined} />),
     [project.stack, hasImage]
   );
 

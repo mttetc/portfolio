@@ -38,7 +38,7 @@ const getInitialItemCount = () => {
 export const useProjectsStore = create<ProjectsState>((set, get) => ({
   projects: [],
   activeFilters: defaultFilters,
-  matchMode: 'any' as MatchMode,
+  matchMode: 'all' as MatchMode,
   filteredProjects: [],
   visibleCount: getInitialItemCount(),
   setProjects: (projects: Project[]) =>

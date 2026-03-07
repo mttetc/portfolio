@@ -1,6 +1,6 @@
 'use client';
 
-import { getTechnology, Technology } from '@/constants/technologies';
+import { getTechnology } from '@/constants/technologies';
 import { AllButton } from './all-button';
 import { TechButton } from './tech-button';
 import { useProjectsStore } from '@/lib/stores/use-projects-store';
