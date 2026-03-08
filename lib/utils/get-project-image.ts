@@ -10,6 +10,7 @@ import bluesystems from '@/app/images/bluesystems.jpg';
 import ouestfrance from '@/app/images/ouestfrance.jpg';
 import pagesjaunes from '@/app/images/pagesjaunes.jpg';
 import agentreplay from '@/app/images/agentreplay.png';
+import cryptosentry from '@/app/images/cryptosentry.png';
 
 // Gradient placeholder image
 const placeholderBase64 =
@@ -40,7 +41,7 @@ const images = {
   taskFlow: placeholder,
   tabs: placeholder,
   livethread: placeholder,
-  cryptosentry: placeholder,
+  cryptosentry,
   nestjsAuthApi: placeholder,
 } as const;
 
