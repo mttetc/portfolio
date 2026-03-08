@@ -12,15 +12,15 @@ export const GITHUB_PROJECT_EXTRAS: Record<string, GitHubProjectExtra> = {
     imageKey: 'nestjsAuthApi',
     stack: ['Nest.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Neon', 'JWT', 'Redis'],
   },
-  cryptosentry: {
+  CryptoSentry: {
     imageKey: 'cryptosentry',
     stack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Supabase', 'Radix UI', 'Upstash', 'Zod'],
   },
-  tabs: {
+  Tabs: {
     imageKey: 'tabs',
     stack: ['React', 'TypeScript', 'TailwindCSS', 'Jest', 'Storybook', 'Framer Motion'],
   },
-  livethread: { imageKey: 'livethread' },
+  LiveThread: { imageKey: 'livethread' },
   quaestio: {
     imageKey: 'quaestio',
     stack: [
@@ -38,8 +38,8 @@ export const GITHUB_PROJECT_EXTRAS: Record<string, GitHubProjectExtra> = {
       'Zod',
     ],
   },
-  cryptoguessr: { imageKey: 'cryptoguessr' },
-  polygons: { imageKey: 'polygons' },
-  TaskFlow: { imageKey: 'taskFlow' },
+  CryptoGuessr: { imageKey: 'cryptoguessr' },
+  DrawPolygons: { imageKey: 'polygons' },
+  taskflow: { imageKey: 'taskFlow' },
   bookmark: { imageKey: 'videobookmark' },
 };
