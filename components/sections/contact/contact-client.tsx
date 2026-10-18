@@ -3,7 +3,7 @@
 import { useLink } from '@react-aria/link';
 import { useRef } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { EMAIL, NICKNAME } from '@/constants/names';
+import { CV_PATH, EMAIL, NICKNAME } from '@/constants/names';
 import { motion, useInView } from 'motion/react';
 import { FiMail, FiMapPin } from 'react-icons/fi';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
@@ -80,11 +80,37 @@ export function ContactClient() {
               whileInView={{ opacity: 1, y: 0 }}
               className="space-y-4"
             >
-              <h3 className="text-3xl font-bold">Let&apos;s work together</h3>
+              <h3 className="text-3xl font-bold">Get in touch</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Have a project in mind? I&apos;d love to hear about it. Whether it&apos;s a full
-                web app, a creative landing page, or an AI-powered experience — let&apos;s bring
-                your vision to life.
+                Open to Senior / Lead Frontend and AI tooling roles: full-time, 100% remote, France
+                or Europe, CET hours.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                <a href={`mailto:${EMAIL}`} className="hover:text-primary transition-colors">
+                  {EMAIL}
+                </a>
+                {' · '}
+                <a
+                  href={socialLinks[1].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  LinkedIn
+                </a>
+                {' · '}
+                <a
+                  href={socialLinks[0].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  GitHub
+                </a>
+                {' · '}
+                <a href={CV_PATH} download className="hover:text-primary transition-colors">
+                  Download CV (PDF)
+                </a>
               </p>
             </motion.div>
 

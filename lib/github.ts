@@ -1,5 +1,4 @@
-import { EXCLUDED_REPOS, GITHUB_PROJECT_EXTRAS } from '@/config/github-projects';
-import { MANUAL_PROJECTS } from '@/constants/manual-projects';
+import { FEATURED_REPOS, GITHUB_PROJECT_EXTRAS, type FeaturedRepo } from '@/config/github-projects';
 import { NICKNAME } from '@/constants/names';
 import { Project } from '@/lib/schemas/projects';
 import { getProjectImage, hasProjectImage, placeholder } from '@/lib/utils/get-project-image';
@@ -125,7 +124,26 @@ function buildStack(repo: GitHubRepoResponse): string[] {
   return stack;
 }
 
-async function fetchAllGitHubRepos(): Promise<Project[]> {
+function toProject(repo: GitHubRepoResponse, displayName?: string): Project {
+  const extra = GITHUB_PROJECT_EXTRAS[repo.name];
+  const imageKey = extra?.imageKey ?? repo.name;
+  const image = hasProjectImage(imageKey) ? getProjectImage(imageKey) : placeholder;
+
+  return {
+    image,
+    name: displayName ?? repo.name,
+    description: repo.description ?? '',
+    github: repo.html_url,
+    url: repo.homepage || undefined,
+    stack: buildStack(repo),
+    stars: repo.stargazers_count,
+    forks: repo.forks_count,
+    updatedAt: repo.updated_at,
+    source: 'github' as const,
+  };
+}
+
+async function fetchFeaturedRepo({ repo, displayName }: FeaturedRepo): Promise<Project | null> {
   const token = process.env.GITHUB_TOKEN;
   const headers: HeadersInit = {
     Accept: 'application/vnd.github.v3+json',
@@ -135,44 +153,21 @@ async function fetchAllGitHubRepos(): Promise<Project[]> {
   }
 
   try {
-    const res = await fetch(
-      `https://api.github.com/users/${NICKNAME}/repos?per_page=100&sort=updated`,
-      {
-        headers,
-        next: { revalidate: 3600 },
-      }
-    );
+    const res = await fetch(`https://api.github.com/repos/${NICKNAME}/${repo}`, {
+      headers,
+      next: { revalidate: 3600 },
+    });
 
-    if (!res.ok) return [];
+    if (!res.ok) return null;
 
-    const repos: GitHubRepoResponse[] = await res.json();
-
-    return repos
-      .filter(repo => !EXCLUDED_REPOS.includes(repo.name) && !repo.archived)
-      .map(repo => {
-        const extra = GITHUB_PROJECT_EXTRAS[repo.name];
-        const imageKey = extra?.imageKey ?? repo.name;
-        const image = hasProjectImage(imageKey) ? getProjectImage(imageKey) : placeholder;
-
-        return {
-          image,
-          name: repo.name,
-          description: repo.description ?? '',
-          github: repo.html_url,
-          url: repo.homepage ?? undefined,
-          stack: buildStack(repo),
-          stars: repo.stargazers_count,
-          forks: repo.forks_count,
-          updatedAt: repo.updated_at,
-          source: 'github' as const,
-        };
-      });
+    const data: GitHubRepoResponse = await res.json();
+    return toProject(data, displayName);
   } catch {
-    return [];
+    return null;
   }
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const githubProjects = await fetchAllGitHubRepos();
-  return [...githubProjects, ...MANUAL_PROJECTS];
+  const projects = await Promise.all(FEATURED_REPOS.map(fetchFeaturedRepo));
+  return projects.filter((project): project is Project => project !== null);
 }
