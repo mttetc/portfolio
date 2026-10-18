@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Matthias Etchegaray | Senior Frontend / Full Stack Engineer',
-  description: 'Senior Frontend / Full Stack Engineer with 10 years of experience building modern web applications with React, Next.js, TypeScript, and AI-powered tools.',
+  description: 'Senior Frontend / Full Stack Engineer with 10+ years of experience building web products in React and TypeScript, with Node.js and Symfony services behind them. B2B SaaS features and AI developer tooling: Claude Code platforms, agents and MCP integrations.',
 };
 
 export const viewport: Viewport = {

@@ -2,3 +2,4 @@ export const FULL_NAME = 'Matthias Etchegaray';
 export const FIRST_NAME = 'Matthias';
 export const NICKNAME = 'mttetc';
 export const EMAIL = 'etchegaray.matthias@gmail.com';
+export const CV_PATH = '/Matthias-Etchegaray-Senior-Frontend-Engineer-CV.pdf';

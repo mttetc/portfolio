@@ -1,21 +1,9 @@
-import TypingAnimation from '@/components/typing-animation';
 import { FIRST_NAME } from '@/constants/names';
 import { HeroCodeBlock } from './hero-code-block';
 import { HeroAvatar } from './hero-avatar';
 import { HeroInteractive } from './hero-interactive';
 import { HeroScrollIndicator } from './hero-scroll-indicator';
 import { HeroEntrance } from './hero-entrance';
-
-const texts = [
-  'Senior Frontend Engineer ✨',
-  'Full Stack Developer 🚀',
-  'React Specialist ⚛️',
-  'AI-Powered Developer 🤖',
-  'UI/UX Enthusiast 🎨',
-  'Performance Optimizer ⚡',
-  'Problem Solver 🧩',
-  'Agentic Engineer 🤝',
-];
 
 export default function Hero() {
   return (
@@ -42,14 +30,14 @@ export default function Hero() {
                 {FIRST_NAME}
               </h1>
 
-              <div className="flex items-center justify-center">
-                <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-muted-foreground">
-                  I&apos;m a <TypingAnimation texts={texts} />
-                </p>
-              </div>
+              <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-muted-foreground font-semibold">
+                Senior Frontend / Full Stack Engineer
+              </p>
 
               <p className="text-muted-foreground text-sm md:text-base">
-                10 years crafting high-performance web apps with React, Next.js, TypeScript, and AI-powered development tools.
+                10+ years building web products in React and TypeScript, with Node.js and Symfony
+                services behind them. I ship B2B SaaS features and build AI developer tooling: Claude
+                Code platforms, agents and MCP integrations. Full remote, CET hours.
               </p>
 
               <HeroInteractive />

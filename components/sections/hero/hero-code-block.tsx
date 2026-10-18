@@ -3,25 +3,12 @@
 import { motion } from 'motion/react';
 import { TypingCodeBlock } from '@/components/typing-code-block';
 
-const codeString = `import { Injectable } from '@nestjs/common';
-
-@Injectable()
-export class EngineerService {
-  private readonly stack = {
-    frontend: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind'],
-    backend: ['Node.js', 'NestJS', 'Express', 'Supabase', 'AWS'],
-    testing: ['Jest', 'Vitest', 'Cypress', 'Playwright'],
-    ai: ['Claude Code', 'MCP', 'Agentic Coding'],
-  };
-
-  async handleProject(brief: string) {
-    const plan = await this.analyze(brief);
-    const solution = await this.build(plan, this.stack);
-    const tested = await this.test(solution);
-
-    return { solution: tested, quality: '100%' };
-  }
-}`;
+const codeString = `export const stack = {
+  frontend: ['React', 'TypeScript', 'TanStack Query', 'Vite', 'Playwright'],
+  ai: ['Claude Code', 'MCP', 'Multi-agent review', 'Browser QA agents'],
+  backend: ['Node.js', 'Fastify', 'BullMQ', 'Symfony', 'RabbitMQ', 'PostgreSQL', 'Supabase'],
+  ops: ['Docker', 'GitLab CI', 'Datadog'],
+};`;
 
 const getImageVariants = () => ({
   hidden: {
