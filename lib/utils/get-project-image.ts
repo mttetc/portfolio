@@ -11,6 +11,7 @@ import ouestfrance from '@/app/images/ouestfrance.jpg';
 import pagesjaunes from '@/app/images/pagesjaunes.jpg';
 import agentreplay from '@/app/images/agentreplay.png';
 import cryptosentry from '@/app/images/cryptosentry.png';
+import hahahahaha from '@/app/images/hahahahaha.jpg';
 
 // Gradient placeholder image
 const placeholderBase64 =
@@ -42,6 +43,7 @@ const images = {
   tabs: placeholder,
   livethread: placeholder,
   cryptosentry,
+  hahahahaha,
   nestjsAuthApi: placeholder,
 } as const;
 

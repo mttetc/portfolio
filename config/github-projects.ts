@@ -20,6 +20,7 @@ export const FEATURED_REPOS: FeaturedRepo[] = [
 // Only imageKey for repos with GitHub topics, stack for repos without topics
 export const GITHUB_PROJECT_EXTRAS: Record<string, GitHubProjectExtra> = {
   AgentReplay: { imageKey: 'agentreplay' },
+  HAHAHAHAHA: { imageKey: 'hahahahaha' },
   Tabs: {
     imageKey: 'tabs',
     stack: ['React', 'TypeScript', 'TailwindCSS', 'Jest', 'Storybook', 'Framer Motion'],
