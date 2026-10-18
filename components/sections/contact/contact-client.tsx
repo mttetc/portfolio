@@ -82,8 +82,8 @@ export function ContactClient() {
             >
               <h3 className="text-3xl font-bold">Get in touch</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Open to Senior / Lead Frontend and AI tooling roles: full-time, 100% remote, France
-                or Europe, CET hours.
+                Open to Senior / Lead Frontend or Full Stack and AI tooling roles: full-time, 100%
+                remote, France or Europe, CET hours.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 <a href={`mailto:${EMAIL}`} className="hover:text-primary transition-colors">

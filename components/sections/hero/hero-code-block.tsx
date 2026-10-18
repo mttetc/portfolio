@@ -6,7 +6,7 @@ import { TypingCodeBlock } from '@/components/typing-code-block';
 const codeString = `export const stack = {
   frontend: ['React', 'TypeScript', 'TanStack Query', 'Vite', 'Playwright'],
   ai: ['Claude Code', 'MCP', 'Multi-agent review', 'Browser QA agents'],
-  backend: ['Node.js', 'Symfony', 'PostgreSQL', 'Supabase'],
+  backend: ['Node.js', 'Fastify', 'BullMQ', 'Symfony', 'RabbitMQ', 'PostgreSQL', 'Supabase'],
   ops: ['Docker', 'GitLab CI', 'Datadog'],
 };`;
 

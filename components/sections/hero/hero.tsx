@@ -31,13 +31,13 @@ export default function Hero() {
               </h1>
 
               <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-muted-foreground font-semibold">
-                Senior Frontend Engineer
+                Senior Frontend / Full Stack Engineer
               </p>
 
               <p className="text-muted-foreground text-sm md:text-base">
-                11 years building web products in React and TypeScript. I ship B2B SaaS features and
-                build AI developer tooling: Claude Code platforms, agents and MCP integrations. Full
-                remote, CET hours.
+                11 years building web products in React and TypeScript, with Node.js and Symfony
+                services behind them. I ship B2B SaaS features and build AI developer tooling: Claude
+                Code platforms, agents and MCP integrations. Full remote, CET hours.
               </p>
 
               <HeroInteractive />

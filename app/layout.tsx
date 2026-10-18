@@ -13,8 +13,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Matthias Etchegaray | Senior Frontend Engineer',
-  description: 'Senior Frontend Engineer with 11 years of experience building web products in React and TypeScript. B2B SaaS features and AI developer tooling: Claude Code platforms, agents and MCP integrations.',
+  title: 'Matthias Etchegaray | Senior Frontend / Full Stack Engineer',
+  description: 'Senior Frontend / Full Stack Engineer with 11 years of experience building web products in React and TypeScript, with Node.js and Symfony services behind them. B2B SaaS features and AI developer tooling: Claude Code platforms, agents and MCP integrations.',
 };
 
 export const viewport: Viewport = {
