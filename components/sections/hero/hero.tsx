@@ -35,7 +35,7 @@ export default function Hero() {
               </p>
 
               <p className="text-muted-foreground text-sm md:text-base">
-                11 years building web products in React and TypeScript, with Node.js and Symfony
+                10+ years building web products in React and TypeScript, with Node.js and Symfony
                 services behind them. I ship B2B SaaS features and build AI developer tooling: Claude
                 Code platforms, agents and MCP integrations. Full remote, CET hours.
               </p>
