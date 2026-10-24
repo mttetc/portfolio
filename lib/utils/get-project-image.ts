@@ -1,16 +1,17 @@
-import cryptoguessr from '@/app/images/cryptoguessr.jpg';
-import polygons from '@/app/images/polygons.jpg';
-import obat from '@/app/images/obat.jpg';
-import happywait from '@/app/images/happywait.jpg';
-import adeo from '@/app/images/adeo.jpg';
-import maisondesfemmes from '@/app/images/maisondesfemmes.jpg';
-import gazettedemonaco from '@/app/images/gazettedemonaco.jpg';
-import alpinecars from '@/app/images/alpinecars.jpg';
-import bluesystems from '@/app/images/bluesystems.jpg';
-import ouestfrance from '@/app/images/ouestfrance.jpg';
-import pagesjaunes from '@/app/images/pagesjaunes.jpg';
-import agentreplay from '@/app/images/agentreplay.png';
-import cryptosentry from '@/app/images/cryptosentry.png';
+import cryptoguessr from '@/app/images/cryptoguessr.webp';
+import polygons from '@/app/images/polygons.webp';
+import obat from '@/app/images/obat.webp';
+import happywait from '@/app/images/happywait.webp';
+import adeo from '@/app/images/adeo.webp';
+import maisondesfemmes from '@/app/images/maisondesfemmes.webp';
+import gazettedemonaco from '@/app/images/gazettedemonaco.webp';
+import alpinecars from '@/app/images/alpinecars.webp';
+import bluesystems from '@/app/images/bluesystems.webp';
+import ouestfrance from '@/app/images/ouestfrance.webp';
+import pagesjaunes from '@/app/images/pagesjaunes.webp';
+import agentreplay from '@/app/images/agentreplay.webp';
+import cryptosentry from '@/app/images/cryptosentry.webp';
+import kantotacticsmeta from '@/app/images/kantotacticsmeta.webp';
 
 // Gradient placeholder image
 const placeholderBase64 =
@@ -42,6 +43,7 @@ const images = {
   tabs: placeholder,
   livethread: placeholder,
   cryptosentry,
+  kantotacticsmeta,
   nestjsAuthApi: placeholder,
 } as const;
 

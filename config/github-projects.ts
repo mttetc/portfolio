@@ -7,6 +7,7 @@ export const EXCLUDED_REPOS = ['portfolio', 'cv'];
 
 // Only imageKey for repos with GitHub topics, stack for repos without topics
 export const GITHUB_PROJECT_EXTRAS: Record<string, GitHubProjectExtra> = {
+  KantoTacticsMeta: { imageKey: 'kantotacticsmeta' },
   AgentReplay: { imageKey: 'agentreplay' },
   'nestjs-auth-api': {
     imageKey: 'nestjsAuthApi',

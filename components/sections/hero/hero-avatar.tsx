@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { FIRST_NAME } from '@/constants/names';
-import avatarImage from '@/public/images/avatar.jpg';
+import avatarImage from '@/public/images/avatar.webp';
 
 const getImageVariants = () => ({
   hidden: {
